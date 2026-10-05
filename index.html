@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Jelly Conveyor</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #17251d; background: white; }
+    body { margin: 0; min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; }
+    main { width: min(100%, 480px, calc(100dvh - 200px)); }
+    header { text-align: center; margin-bottom: 36px; }
+    .level { margin-bottom: 12px; font-size: 13px; letter-spacing: 2px; color: #8a918d; }
+    .label { font-size: clamp(16px,4vw,24px); letter-spacing: 1px; }
+    .counter { position: relative; width: max-content; margin: 4px auto 0; font-size: clamp(48px,13vw,80px); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .board { position: relative; background: #4b4d50; border: 1px solid #36383b; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px #233c3210; }
+    canvas { display: block; width: 100%; aspect-ratio: 1; touch-action: none; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .overlay { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 16px; padding: 24px; color: white; background: #37393ce8; text-align: center; backdrop-filter: blur(5px); }
+    .overlay[hidden], .overlay button[hidden] { display: none; }
+    .overlay h1 { margin: 0; font-size: clamp(20px,5vw,30px); font-weight: 600; }
+    .overlay p { margin: 0; color: #d8dbda; font-size: 15px; }
+    .overlay button { margin-top: 8px; border: 0; border-radius: 24px; background: white; color: #17251d; padding: 13px 24px; font: inherit; font-weight: 600; cursor: pointer; }
+    .overlay button:focus-visible { outline: 3px solid #56f54b; outline-offset: 4px; }
+    .toolbar-button { position: fixed; z-index: 3; top: max(18px,env(safe-area-inset-top)); height: 48px; padding: 0 14px; display: flex; align-items: center; gap: 9px; font: inherit; font-size: 13px; font-weight: 600; border: 1px solid #e8ece9; border-radius: 16px; background: #fff; color: #17251d; cursor: pointer; box-shadow: 0 4px 16px #17251d08; }
+    .toolbar-button:hover { background: #f2f6f3; }
+    .toolbar-button svg { width: 22px; height: 22px; }
+    .toolbar-button:focus-visible, .level-tile:focus-visible, .menu-close:focus-visible { outline: 3px solid #56f54b; outline-offset: 3px; }
+    .level-toggle { left: max(18px,env(safe-area-inset-left)); }
+    .settings-toggle { right: max(18px,env(safe-area-inset-right)); }
+    #level-menu { left: max(18px,env(safe-area-inset-left)); right: auto; }
+    #settings-menu { width: min(340px,calc(100vw - 36px)); }
+    .setting-option { display: flex; align-items: center; gap: 12px; padding: 12px 0; cursor: pointer; font-size: 17px; }
+    .setting-option input { width: 22px; height: 22px; accent-color: #36bd4c; cursor: pointer; }
+    .setting-note { margin: 0 0 4px 34px; font-size: 13px; color: #818982; line-height: 1.5; }
+    dialog { position: fixed; inset: max(78px,calc(env(safe-area-inset-top) + 66px)) 18px auto auto; margin: 0; width: min(560px,calc(100vw - 36px)); max-height: calc(100dvh - 100px); overflow: auto; padding: 24px; border: 1px solid #e5eae6; border-radius: 24px; color: #17251d; box-shadow: 0 18px 70px #17251d30; background: white; }
+    dialog[open] { animation: menu-enter 180ms ease-out; }
+    dialog::backdrop { background: #17251d32; backdrop-filter: blur(3px); }
+    .menu-header { position: sticky; top: 0; z-index: 1; background: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .menu-header h2 { margin: 0; font-size: 24px; font-weight: 600; }
+    .menu-close { border: 0; border-radius: 50%; width: 36px; height: 36px; background: #f2f5f3; color: #17251d; font-size: 24px; cursor: pointer; }
+    .level-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+    .level-tile { position: relative; display: grid; align-content: start; gap: 5px; min-height: 122px; padding: 14px 10px; border: 1px solid #e4eae5; border-radius: 16px; background: white; color: #17251d; text-align: left; font: inherit; cursor: pointer; }
+    .level-tile:hover { border-color: #90d898; background: #f6faf7; }
+    .level-tile[aria-current="true"] { border-color: #50c764; background: #effbee; }
+    .level-tile strong { font-size: 25px; font-weight: 600; line-height: 1; }
+    .level-name { font-size: 12px; line-height: 1.3; min-height: 31px; }
+    .level-meta { color: #818982; font-size: 11px; line-height: 1.35; }
+    .level-check { position: absolute; top: 12px; right: 10px; color: #2a9c47; }
+    @keyframes menu-enter { from { opacity: 0; transform: translateY(-12px) scale(.98); } to { opacity: 1; transform: none; } }
+    @media(max-width:380px) { dialog { padding: 16px; } .level-grid { gap: 7px; } .level-tile { padding: 12px 8px; } }
+    @media(prefers-reduced-motion:reduce) { dialog[open] { animation: none; } }
+    @media(max-height:600px) { body { padding:12px; } header { margin-bottom:18px; } .counter { font-size:48px; } }
+  </style>
+</head>
+<body>
+  <button class="toolbar-button level-toggle" id="level-toggle" type="button" aria-label="Выбрать уровень" aria-haspopup="dialog" aria-controls="level-menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h4v4H3zm7 0h4v4h-4zm7 0h4v4h-4zM3 10h4v4H3zm7 0h4v4h-4zm7 0h4v4h-4zM3 17h4v4H3zm7 0h4v4h-4zm7 0h4v4h-4z"/></svg><span>УРОВНИ</span></button>
+  <button class="toolbar-button settings-toggle" id="settings-toggle" type="button" aria-haspopup="dialog" aria-controls="settings-menu" aria-expanded="false">Настройки</button>
+  <dialog id="settings-menu" aria-labelledby="settings-title">
+    <div class="menu-header"><h2 id="settings-title">Настройки</h2><button class="menu-close" id="settings-close" type="button" aria-label="Закрыть настройки">×</button></div>
+    <label class="setting-option"><input id="move-all-floor" type="checkbox"><span>Move All Floor</span></label>
+    <p class="setting-note">Один свайп двигает все дорожки в выбранном направлении.</p>
+    <label class="setting-option"><input id="infinite-moves" type="checkbox"><span>INFINITE MOVES</span></label>
+    <p class="setting-note">Без ограничения ходов. Считаем сделанные ходы.</p>
+  </dialog>
+  <dialog id="level-menu" aria-labelledby="menu-title">
+    <div class="menu-header"><h2 id="menu-title">Уровни</h2><button class="menu-close" id="menu-close" type="button" aria-label="Закрыть выбор уровней">×</button></div>
+    <div class="level-grid" id="level-grid"></div>
+  </dialog>
+  <main>
+    <header id="move-counter" aria-label="Осталось ходов"><div class="level" id="level">LEVEL 1 / 35</div><div class="label" id="count-label">MOVES LEFT</div><div class="counter"><span id="count">5</span></div></header>
+    <div class="board"><canvas id="game" aria-label="Поле 3 на 3. Потяните любую клетку, чтобы двигать строку или столбец конвейера."></canvas><div class="overlay" id="overlay" aria-live="polite" hidden><h1 id="overlay-title"></h1><p id="overlay-text"></p><button id="retry" type="button" hidden>Еще раз</button></div></div>
+  </main>
+  <script src="rules.js?v=active-belt-2"></script>
+  <script src="levels.js?v=active-belt-2"></script>
+  <script src="game.js?v=active-belt-2"></script>
+</body>
+</html>

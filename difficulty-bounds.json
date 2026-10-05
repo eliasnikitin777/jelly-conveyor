@@ -1,0 +1,66 @@
+[
+  {
+    "level": 5,
+    "name": "Четыре цвета",
+    "mode": "single",
+    "minimum": null,
+    "provedThrough": 3,
+    "lowerBound": 4,
+    "states": 62105,
+    "reason": "depth limit"
+  },
+  {
+    "level": 6,
+    "name": "Объезд",
+    "mode": "single",
+    "minimum": 3,
+    "provedThrough": 2,
+    "states": 181
+  },
+  {
+    "level": 16,
+    "name": "Бублик",
+    "mode": "single",
+    "minimum": 4,
+    "provedThrough": 3,
+    "states": 5680
+  },
+  {
+    "level": 15,
+    "name": "Большие организмы",
+    "mode": "allFloor",
+    "minimum": null,
+    "provedThrough": 5,
+    "lowerBound": 6,
+    "states": 1279,
+    "reason": "depth limit"
+  },
+  {
+    "level": 16,
+    "name": "Бублик",
+    "mode": "allFloor",
+    "minimum": 4,
+    "provedThrough": 3,
+    "states": 215
+  },
+  {
+    "level": 27,
+    "name": "Крылья",
+    "mode": "allFloor",
+    "minimum": null,
+    "provedThrough": 6,
+    "lowerBound": 7,
+    "states": 4187,
+    "reason": "depth limit"
+  },
+  {
+    "level": 28,
+    "name": "Колодец",
+    "mode": "allFloor",
+    "minimum": null,
+    "provedThrough": 6,
+    "lowerBound": 7,
+    "states": 21040,
+    "reason": "depth limit"
+  }
+]

@@ -1,0 +1,3535 @@
+{
+  "method": {
+    "beam": 400,
+    "maxStates": 120000,
+    "maxDepth": "shorter of authored length and 26",
+    "note": "Verified upper bounds, not optimal solutions unless explicitly marked."
+  },
+  "levels": [
+    {
+      "level": 1,
+      "name": "Первые ленты",
+      "size": 3,
+      "cells": 4,
+      "colors": 2,
+      "walls": 0,
+      "organisms": 4,
+      "largestOrganism": 1,
+      "budget": 5,
+      "single": {
+        "authored": 2,
+        "bestFound": 2,
+        "solution": [
+          [
+            "x",
+            0,
+            -2
+          ],
+          [
+            "x",
+            2,
+            -2
+          ]
+        ],
+        "searchStates": 7,
+        "optimal": true
+      },
+      "allFloor": {
+        "authored": 1,
+        "bestFound": 1,
+        "solution": [
+          [
+            "x",
+            null,
+            -2
+          ]
+        ],
+        "searchStates": 1,
+        "optimal": false
+      }
+    },
+    {
+      "level": 2,
+      "name": "Три желейки",
+      "size": 4,
+      "cells": 6,
+      "colors": 2,
+      "walls": 0,
+      "organisms": 6,
+      "largestOrganism": 1,
+      "budget": 8,
+      "single": {
+        "authored": 3,
+        "bestFound": 3,
+        "solution": [
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            2,
+            2
+          ],
+          [
+            "x",
+            2,
+            1
+          ]
+        ],
+        "searchStates": 271,
+        "optimal": true
+      },
+      "allFloor": {
+        "authored": 2,
+        "bestFound": 2,
+        "solution": [
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            -3
+          ]
+        ],
+        "searchStates": 12,
+        "optimal": false
+      }
+    },
+    {
+      "level": 3,
+      "name": "Третий цвет",
+      "size": 4,
+      "cells": 9,
+      "colors": 3,
+      "walls": 0,
+      "organisms": 8,
+      "largestOrganism": 2,
+      "budget": 12,
+      "single": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "y",
+            1,
+            -3
+          ],
+          [
+            "x",
+            1,
+            -3
+          ],
+          [
+            "x",
+            3,
+            1
+          ],
+          [
+            "y",
+            3,
+            -3
+          ],
+          [
+            "x",
+            0,
+            -3
+          ]
+        ],
+        "searchStates": 5539,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 3,
+        "bestFound": 3,
+        "solution": [
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -3
+          ]
+        ],
+        "searchStates": 47,
+        "optimal": false
+      }
+    },
+    {
+      "level": 4,
+      "name": "Большое поле",
+      "size": 5,
+      "cells": 12,
+      "colors": 3,
+      "walls": 0,
+      "organisms": 12,
+      "largestOrganism": 1,
+      "budget": 16,
+      "single": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            2,
+            2
+          ],
+          [
+            "x",
+            2,
+            -4
+          ],
+          [
+            "y",
+            4,
+            2
+          ],
+          [
+            "y",
+            0,
+            2
+          ],
+          [
+            "x",
+            2,
+            -4
+          ],
+          [
+            "x",
+            4,
+            -4
+          ],
+          [
+            "y",
+            0,
+            -4
+          ]
+        ],
+        "searchStates": 31109,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "y",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            -4
+          ]
+        ],
+        "searchStates": 1994,
+        "optimal": false
+      }
+    },
+    {
+      "level": 5,
+      "name": "Четыре цвета",
+      "size": 6,
+      "cells": 16,
+      "colors": 4,
+      "walls": 0,
+      "organisms": 16,
+      "largestOrganism": 1,
+      "budget": 20,
+      "single": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "x",
+            2,
+            3
+          ],
+          [
+            "y",
+            4,
+            3
+          ],
+          [
+            "x",
+            4,
+            4
+          ],
+          [
+            "x",
+            3,
+            -2
+          ],
+          [
+            "y",
+            3,
+            -5
+          ],
+          [
+            "y",
+            0,
+            -5
+          ],
+          [
+            "x",
+            0,
+            -5
+          ],
+          [
+            "x",
+            5,
+            4
+          ],
+          [
+            "y",
+            5,
+            -5
+          ]
+        ],
+        "searchStates": 83167,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 6364,
+        "optimal": false
+      }
+    },
+    {
+      "level": 6,
+      "name": "Объезд",
+      "size": 4,
+      "cells": 6,
+      "colors": 2,
+      "walls": 2,
+      "organisms": 5,
+      "largestOrganism": 2,
+      "budget": 10,
+      "single": {
+        "authored": 3,
+        "bestFound": 3,
+        "solution": [
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            3,
+            -3
+          ],
+          [
+            "x",
+            2,
+            -3
+          ]
+        ],
+        "searchStates": 90,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 2,
+        "bestFound": 2,
+        "solution": [
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -3
+          ]
+        ],
+        "searchStates": 12,
+        "optimal": false
+      }
+    },
+    {
+      "level": 7,
+      "name": "Две цепочки",
+      "size": 5,
+      "cells": 8,
+      "colors": 2,
+      "walls": 1,
+      "organisms": 4,
+      "largestOrganism": 2,
+      "budget": 12,
+      "single": {
+        "authored": 4,
+        "bestFound": 4,
+        "solution": [
+          [
+            "x",
+            3,
+            -4
+          ],
+          [
+            "y",
+            0,
+            2
+          ],
+          [
+            "x",
+            3,
+            3
+          ],
+          [
+            "y",
+            3,
+            -4
+          ]
+        ],
+        "searchStates": 601,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 3,
+        "bestFound": 3,
+        "solution": [
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -4
+          ]
+        ],
+        "searchStates": 48,
+        "optimal": false
+      }
+    },
+    {
+      "level": 8,
+      "name": "Остров",
+      "size": 5,
+      "cells": 9,
+      "colors": 3,
+      "walls": 3,
+      "organisms": 6,
+      "largestOrganism": 2,
+      "budget": 12,
+      "single": {
+        "authored": 4,
+        "bestFound": 4,
+        "solution": [
+          [
+            "y",
+            4,
+            3
+          ],
+          [
+            "x",
+            3,
+            -4
+          ],
+          [
+            "y",
+            1,
+            3
+          ],
+          [
+            "x",
+            3,
+            3
+          ]
+        ],
+        "searchStates": 1454,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 3,
+        "bestFound": 3,
+        "solution": [
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            -4
+          ]
+        ],
+        "searchStates": 68,
+        "optimal": false
+      }
+    },
+    {
+      "level": 9,
+      "name": "Поворот",
+      "size": 5,
+      "cells": 9,
+      "colors": 3,
+      "walls": 4,
+      "organisms": 6,
+      "largestOrganism": 2,
+      "budget": 14,
+      "single": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            4,
+            -4
+          ],
+          [
+            "x",
+            4,
+            1
+          ],
+          [
+            "y",
+            2,
+            -4
+          ],
+          [
+            "x",
+            4,
+            3
+          ],
+          [
+            "y",
+            4,
+            -4
+          ]
+        ],
+        "searchStates": 3082,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            3
+          ]
+        ],
+        "searchStates": 620,
+        "optimal": false
+      }
+    },
+    {
+      "level": 10,
+      "name": "Ключи",
+      "size": 6,
+      "cells": 12,
+      "colors": 3,
+      "walls": 4,
+      "organisms": 6,
+      "largestOrganism": 3,
+      "budget": 16,
+      "single": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            4,
+            -5
+          ],
+          [
+            "x",
+            5,
+            -5
+          ],
+          [
+            "y",
+            1,
+            -5
+          ],
+          [
+            "x",
+            5,
+            5
+          ],
+          [
+            "y",
+            4,
+            3
+          ]
+        ],
+        "searchStates": 6468,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 967,
+        "optimal": false
+      }
+    },
+    {
+      "level": 11,
+      "name": "Коридоры",
+      "size": 6,
+      "cells": 12,
+      "colors": 3,
+      "walls": 4,
+      "organisms": 6,
+      "largestOrganism": 2,
+      "budget": 20,
+      "single": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            5,
+            -5
+          ],
+          [
+            "y",
+            0,
+            1
+          ],
+          [
+            "x",
+            1,
+            3
+          ],
+          [
+            "y",
+            5,
+            3
+          ],
+          [
+            "x",
+            5,
+            3
+          ],
+          [
+            "x",
+            3,
+            -5
+          ],
+          [
+            "y",
+            4,
+            -5
+          ]
+        ],
+        "searchStates": 9747,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 12,
+        "bestFound": 12,
+        "solution": [
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -2
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -2
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 5787,
+        "optimal": false
+      }
+    },
+    {
+      "level": 12,
+      "name": "Четыре угла",
+      "size": 6,
+      "cells": 12,
+      "colors": 4,
+      "walls": 4,
+      "organisms": 8,
+      "largestOrganism": 2,
+      "budget": 20,
+      "single": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "x",
+            3,
+            3
+          ],
+          [
+            "y",
+            4,
+            1
+          ],
+          [
+            "x",
+            3,
+            -5
+          ],
+          [
+            "y",
+            4,
+            -5
+          ],
+          [
+            "x",
+            2,
+            -5
+          ],
+          [
+            "y",
+            0,
+            2
+          ]
+        ],
+        "searchStates": 20662,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "y",
+            null,
+            -2
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            4
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 2759,
+        "optimal": false
+      }
+    },
+    {
+      "level": 13,
+      "name": "В обход",
+      "size": 7,
+      "cells": 16,
+      "colors": 4,
+      "walls": 5,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 22,
+      "single": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            6,
+            -2
+          ],
+          [
+            "x",
+            5,
+            3
+          ],
+          [
+            "x",
+            6,
+            5
+          ],
+          [
+            "y",
+            5,
+            -6
+          ],
+          [
+            "y",
+            6,
+            -6
+          ],
+          [
+            "x",
+            0,
+            3
+          ],
+          [
+            "x",
+            0,
+            -6
+          ]
+        ],
+        "searchStates": 27979,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 3457,
+        "optimal": false
+      }
+    },
+    {
+      "level": 14,
+      "name": "Архипелаг",
+      "size": 7,
+      "cells": 16,
+      "colors": 4,
+      "walls": 7,
+      "organisms": 8,
+      "largestOrganism": 2,
+      "budget": 30,
+      "single": {
+        "authored": 12,
+        "bestFound": 12,
+        "solution": [
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "x",
+            6,
+            -6
+          ],
+          [
+            "y",
+            6,
+            3
+          ],
+          [
+            "x",
+            3,
+            -6
+          ],
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "x",
+            5,
+            -6
+          ],
+          [
+            "x",
+            3,
+            1
+          ],
+          [
+            "y",
+            0,
+            2
+          ],
+          [
+            "x",
+            3,
+            4
+          ],
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "y",
+            5,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -6
+          ]
+        ],
+        "searchStates": 35228,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 11,
+        "bestFound": 11,
+        "solution": [
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            4
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": null,
+        "optimal": false
+      }
+    },
+    {
+      "level": 15,
+      "name": "Большие организмы",
+      "size": 7,
+      "cells": 20,
+      "colors": 4,
+      "walls": 7,
+      "organisms": 8,
+      "largestOrganism": 3,
+      "budget": 34,
+      "single": {
+        "authored": 14,
+        "bestFound": 14,
+        "solution": [
+          [
+            "x",
+            6,
+            3
+          ],
+          [
+            "y",
+            3,
+            -6
+          ],
+          [
+            "x",
+            6,
+            -1
+          ],
+          [
+            "y",
+            5,
+            -3
+          ],
+          [
+            "y",
+            6,
+            3
+          ],
+          [
+            "y",
+            0,
+            1
+          ],
+          [
+            "x",
+            6,
+            -6
+          ],
+          [
+            "y",
+            3,
+            2
+          ],
+          [
+            "x",
+            6,
+            3
+          ],
+          [
+            "y",
+            5,
+            2
+          ],
+          [
+            "y",
+            0,
+            4
+          ],
+          [
+            "x",
+            6,
+            3
+          ],
+          [
+            "y",
+            5,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -6
+          ]
+        ],
+        "searchStates": null,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 14,
+        "bestFound": 14,
+        "solution": [
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 11406,
+        "optimal": false
+      }
+    },
+    {
+      "level": 16,
+      "name": "Бублик",
+      "size": 5,
+      "cells": 10,
+      "colors": 2,
+      "walls": 1,
+      "organisms": 6,
+      "largestOrganism": 3,
+      "budget": 24,
+      "single": {
+        "authored": 4,
+        "bestFound": 4,
+        "solution": [
+          [
+            "y",
+            3,
+            -1
+          ],
+          [
+            "x",
+            3,
+            -4
+          ],
+          [
+            "y",
+            3,
+            3
+          ],
+          [
+            "x",
+            4,
+            -4
+          ]
+        ],
+        "searchStates": 1146,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 4,
+        "bestFound": 4,
+        "solution": [
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -4
+          ]
+        ],
+        "searchStates": 173,
+        "optimal": false
+      }
+    },
+    {
+      "level": 17,
+      "name": "Шахматные острова",
+      "size": 6,
+      "cells": 15,
+      "colors": 3,
+      "walls": 4,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 27,
+      "single": {
+        "authored": 10,
+        "bestFound": 10,
+        "solution": [
+          [
+            "x",
+            0,
+            -5
+          ],
+          [
+            "y",
+            2,
+            2
+          ],
+          [
+            "x",
+            0,
+            4
+          ],
+          [
+            "y",
+            5,
+            4
+          ],
+          [
+            "x",
+            5,
+            -5
+          ],
+          [
+            "y",
+            4,
+            1
+          ],
+          [
+            "x",
+            2,
+            1
+          ],
+          [
+            "y",
+            5,
+            3
+          ],
+          [
+            "x",
+            5,
+            -5
+          ],
+          [
+            "y",
+            0,
+            -5
+          ]
+        ],
+        "searchStates": 17778,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 8,
+        "bestFound": 8,
+        "solution": [
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -2
+          ],
+          [
+            "x",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 6788,
+        "optimal": false
+      }
+    },
+    {
+      "level": 18,
+      "name": "Две двери",
+      "size": 6,
+      "cells": 15,
+      "colors": 3,
+      "walls": 3,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 24,
+      "single": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "x",
+            3,
+            3
+          ],
+          [
+            "y",
+            5,
+            -1
+          ],
+          [
+            "x",
+            3,
+            -4
+          ],
+          [
+            "y",
+            5,
+            2
+          ],
+          [
+            "x",
+            5,
+            -5
+          ],
+          [
+            "y",
+            0,
+            -5
+          ]
+        ],
+        "searchStates": 14901,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 2016,
+        "optimal": false
+      }
+    },
+    {
+      "level": 19,
+      "name": "Подкова",
+      "size": 6,
+      "cells": 15,
+      "colors": 3,
+      "walls": 8,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 31,
+      "single": {
+        "authored": 12,
+        "bestFound": 10,
+        "solution": [
+          [
+            "x",
+            1,
+            -5
+          ],
+          [
+            "y",
+            5,
+            -5
+          ],
+          [
+            "x",
+            0,
+            -1
+          ],
+          [
+            "x",
+            1,
+            -5
+          ],
+          [
+            "y",
+            3,
+            1
+          ],
+          [
+            "x",
+            5,
+            3
+          ],
+          [
+            "y",
+            5,
+            -5
+          ],
+          [
+            "x",
+            0,
+            -5
+          ],
+          [
+            "x",
+            1,
+            -5
+          ],
+          [
+            "y",
+            0,
+            2
+          ]
+        ],
+        "searchStates": 14535,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "y",
+            null,
+            -2
+          ],
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            2
+          ]
+        ],
+        "searchStates": 4745,
+        "optimal": false
+      }
+    },
+    {
+      "level": 20,
+      "name": "Песочные часы",
+      "size": 7,
+      "cells": 12,
+      "colors": 2,
+      "walls": 18,
+      "organisms": 6,
+      "largestOrganism": 4,
+      "budget": 24,
+      "single": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "x",
+            2,
+            -1
+          ],
+          [
+            "y",
+            3,
+            1
+          ],
+          [
+            "x",
+            6,
+            5
+          ],
+          [
+            "x",
+            5,
+            -2
+          ],
+          [
+            "y",
+            3,
+            -6
+          ]
+        ],
+        "searchStates": 2833,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -2
+          ],
+          [
+            "y",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 1672,
+        "optimal": false
+      }
+    },
+    {
+      "level": 21,
+      "name": "Лестница",
+      "size": 6,
+      "cells": 15,
+      "colors": 3,
+      "walls": 4,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 26,
+      "single": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "x",
+            5,
+            1
+          ],
+          [
+            "y",
+            5,
+            -5
+          ],
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            5,
+            5
+          ],
+          [
+            "x",
+            5,
+            -3
+          ],
+          [
+            "y",
+            1,
+            2
+          ],
+          [
+            "x",
+            5,
+            -5
+          ],
+          [
+            "y",
+            1,
+            -5
+          ],
+          [
+            "y",
+            0,
+            -5
+          ]
+        ],
+        "searchStates": 10872,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "x",
+            null,
+            -5
+          ],
+          [
+            "y",
+            null,
+            -5
+          ]
+        ],
+        "searchStates": 3845,
+        "optimal": false
+      }
+    },
+    {
+      "level": 22,
+      "name": "Длинные руки",
+      "size": 7,
+      "cells": 18,
+      "colors": 3,
+      "walls": 5,
+      "organisms": 9,
+      "largestOrganism": 4,
+      "budget": 24,
+      "single": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "x",
+            4,
+            1
+          ],
+          [
+            "y",
+            6,
+            -6
+          ],
+          [
+            "y",
+            1,
+            2
+          ],
+          [
+            "x",
+            5,
+            5
+          ],
+          [
+            "y",
+            5,
+            -3
+          ],
+          [
+            "y",
+            4,
+            -1
+          ]
+        ],
+        "searchStates": 11602,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 5,
+        "bestFound": 5,
+        "solution": [
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "y",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 2427,
+        "optimal": false
+      }
+    },
+    {
+      "level": 23,
+      "name": "Змейка",
+      "size": 7,
+      "cells": 15,
+      "colors": 3,
+      "walls": 12,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 33,
+      "single": {
+        "authored": 13,
+        "bestFound": 11,
+        "solution": [
+          [
+            "x",
+            0,
+            -6
+          ],
+          [
+            "x",
+            2,
+            3
+          ],
+          [
+            "x",
+            4,
+            4
+          ],
+          [
+            "y",
+            6,
+            3
+          ],
+          [
+            "x",
+            2,
+            1
+          ],
+          [
+            "y",
+            6,
+            -1
+          ],
+          [
+            "y",
+            6,
+            5
+          ],
+          [
+            "x",
+            6,
+            2
+          ],
+          [
+            "y",
+            6,
+            -6
+          ],
+          [
+            "x",
+            4,
+            -6
+          ],
+          [
+            "y",
+            0,
+            -6
+          ]
+        ],
+        "searchStates": 16948,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -4
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 5601,
+        "optimal": false
+      }
+    },
+    {
+      "level": 24,
+      "name": "Четыре комнаты",
+      "size": 7,
+      "cells": 20,
+      "colors": 4,
+      "walls": 9,
+      "organisms": 12,
+      "largestOrganism": 3,
+      "budget": 31,
+      "single": {
+        "authored": 12,
+        "bestFound": 12,
+        "solution": [
+          [
+            "y",
+            5,
+            1
+          ],
+          [
+            "y",
+            4,
+            -6
+          ],
+          [
+            "x",
+            1,
+            2
+          ],
+          [
+            "x",
+            2,
+            -1
+          ],
+          [
+            "y",
+            5,
+            3
+          ],
+          [
+            "x",
+            5,
+            -6
+          ],
+          [
+            "x",
+            0,
+            1
+          ],
+          [
+            "y",
+            1,
+            4
+          ],
+          [
+            "x",
+            4,
+            1
+          ],
+          [
+            "y",
+            5,
+            -6
+          ],
+          [
+            "y",
+            5,
+            5
+          ],
+          [
+            "x",
+            5,
+            -6
+          ]
+        ],
+        "searchStates": 27519,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 12,
+        "bestFound": 12,
+        "solution": [
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            3
+          ]
+        ],
+        "searchStates": 11843,
+        "optimal": false
+      }
+    },
+    {
+      "level": 25,
+      "name": "Двойное кольцо",
+      "size": 7,
+      "cells": 15,
+      "colors": 3,
+      "walls": 12,
+      "organisms": 9,
+      "largestOrganism": 3,
+      "budget": 24,
+      "single": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "x",
+            3,
+            1
+          ],
+          [
+            "x",
+            0,
+            3
+          ],
+          [
+            "y",
+            3,
+            2
+          ],
+          [
+            "x",
+            3,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -2
+          ],
+          [
+            "y",
+            3,
+            5
+          ],
+          [
+            "y",
+            2,
+            1
+          ]
+        ],
+        "searchStates": 16038,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 6706,
+        "optimal": false
+      }
+    },
+    {
+      "level": 26,
+      "name": "Серпантин",
+      "size": 7,
+      "cells": 18,
+      "colors": 3,
+      "walls": 9,
+      "organisms": 9,
+      "largestOrganism": 4,
+      "budget": 29,
+      "single": {
+        "authored": 11,
+        "bestFound": 9,
+        "solution": [
+          [
+            "x",
+            6,
+            -2
+          ],
+          [
+            "y",
+            0,
+            3
+          ],
+          [
+            "x",
+            3,
+            2
+          ],
+          [
+            "y",
+            4,
+            -6
+          ],
+          [
+            "y",
+            1,
+            2
+          ],
+          [
+            "y",
+            6,
+            3
+          ],
+          [
+            "x",
+            6,
+            -6
+          ],
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "x",
+            0,
+            2
+          ]
+        ],
+        "searchStates": 16166,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 8,
+        "bestFound": 8,
+        "solution": [
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            3
+          ]
+        ],
+        "searchStates": 4822,
+        "optimal": false
+      }
+    },
+    {
+      "level": 27,
+      "name": "Крылья",
+      "size": 7,
+      "cells": 20,
+      "colors": 4,
+      "walls": 9,
+      "organisms": 12,
+      "largestOrganism": 3,
+      "budget": 52,
+      "single": {
+        "authored": 23,
+        "bestFound": 22,
+        "solution": [
+          [
+            "x",
+            6,
+            -1
+          ],
+          [
+            "y",
+            6,
+            2
+          ],
+          [
+            "x",
+            0,
+            -1
+          ],
+          [
+            "y",
+            0,
+            1
+          ],
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            2,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -6
+          ],
+          [
+            "y",
+            3,
+            2
+          ],
+          [
+            "x",
+            1,
+            -6
+          ],
+          [
+            "y",
+            4,
+            1
+          ],
+          [
+            "x",
+            0,
+            -6
+          ],
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "y",
+            3,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -6
+          ],
+          [
+            "y",
+            0,
+            5
+          ],
+          [
+            "y",
+            3,
+            -6
+          ],
+          [
+            "x",
+            0,
+            -6
+          ],
+          [
+            "y",
+            0,
+            6
+          ],
+          [
+            "x",
+            6,
+            3
+          ],
+          [
+            "y",
+            4,
+            -6
+          ],
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            6,
+            1
+          ]
+        ],
+        "searchStates": 17710,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 16,
+        "bestFound": 16,
+        "solution": [
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -4
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            5
+          ]
+        ],
+        "searchStates": 8463,
+        "optimal": false
+      }
+    },
+    {
+      "level": 28,
+      "name": "Колодец",
+      "size": 7,
+      "cells": 18,
+      "colors": 3,
+      "walls": 7,
+      "organisms": 9,
+      "largestOrganism": 4,
+      "budget": 27,
+      "single": {
+        "authored": 8,
+        "bestFound": 8,
+        "solution": [
+          [
+            "y",
+            0,
+            -6
+          ],
+          [
+            "x",
+            0,
+            3
+          ],
+          [
+            "x",
+            2,
+            -6
+          ],
+          [
+            "y",
+            5,
+            2
+          ],
+          [
+            "x",
+            0,
+            2
+          ],
+          [
+            "y",
+            6,
+            4
+          ],
+          [
+            "y",
+            6,
+            -5
+          ],
+          [
+            "x",
+            1,
+            -6
+          ]
+        ],
+        "searchStates": 17405,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 10,
+        "bestFound": 10,
+        "solution": [
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            -1
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -6
+          ]
+        ],
+        "searchStates": 8022,
+        "optimal": false
+      }
+    },
+    {
+      "level": 29,
+      "name": "Соты",
+      "size": 7,
+      "cells": 20,
+      "colors": 4,
+      "walls": 8,
+      "organisms": 12,
+      "largestOrganism": 3,
+      "budget": 26,
+      "single": {
+        "authored": 9,
+        "bestFound": 8,
+        "solution": [
+          [
+            "x",
+            3,
+            2
+          ],
+          [
+            "x",
+            6,
+            -6
+          ],
+          [
+            "y",
+            1,
+            -6
+          ],
+          [
+            "y",
+            3,
+            -4
+          ],
+          [
+            "y",
+            1,
+            1
+          ],
+          [
+            "x",
+            1,
+            4
+          ],
+          [
+            "y",
+            5,
+            1
+          ],
+          [
+            "y",
+            5,
+            4
+          ]
+        ],
+        "searchStates": 26348,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "x",
+            null,
+            -2
+          ],
+          [
+            "y",
+            null,
+            -6
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            4
+          ],
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            1
+          ]
+        ],
+        "searchStates": 7517,
+        "optimal": false
+      }
+    },
+    {
+      "level": 30,
+      "name": "Крестовые проходы",
+      "size": 8,
+      "cells": 20,
+      "colors": 4,
+      "walls": 20,
+      "organisms": 12,
+      "largestOrganism": 3,
+      "budget": 31,
+      "single": {
+        "authored": 12,
+        "bestFound": 11,
+        "solution": [
+          [
+            "y",
+            6,
+            2
+          ],
+          [
+            "x",
+            2,
+            -7
+          ],
+          [
+            "x",
+            2,
+            2
+          ],
+          [
+            "y",
+            2,
+            2
+          ],
+          [
+            "x",
+            5,
+            4
+          ],
+          [
+            "x",
+            2,
+            2
+          ],
+          [
+            "y",
+            5,
+            2
+          ],
+          [
+            "x",
+            6,
+            -7
+          ],
+          [
+            "x",
+            5,
+            1
+          ],
+          [
+            "y",
+            5,
+            -4
+          ],
+          [
+            "y",
+            2,
+            2
+          ]
+        ],
+        "searchStates": 30345,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            4
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            5
+          ],
+          [
+            "x",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            2
+          ]
+        ],
+        "searchStates": 12861,
+        "optimal": false
+      }
+    },
+    {
+      "level": 31,
+      "name": "Рояль",
+      "size": 8,
+      "cells": 18,
+      "colors": 3,
+      "walls": 12,
+      "organisms": 9,
+      "largestOrganism": 4,
+      "budget": 26,
+      "single": {
+        "authored": 9,
+        "bestFound": 8,
+        "solution": [
+          [
+            "y",
+            0,
+            2
+          ],
+          [
+            "x",
+            6,
+            -7
+          ],
+          [
+            "x",
+            5,
+            -7
+          ],
+          [
+            "y",
+            0,
+            -7
+          ],
+          [
+            "y",
+            2,
+            1
+          ],
+          [
+            "x",
+            3,
+            4
+          ],
+          [
+            "x",
+            3,
+            -7
+          ],
+          [
+            "y",
+            0,
+            3
+          ]
+        ],
+        "searchStates": 22917,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            -7
+          ]
+        ],
+        "searchStates": 7370,
+        "optimal": false
+      }
+    },
+    {
+      "level": 32,
+      "name": "Галактика",
+      "size": 8,
+      "cells": 24,
+      "colors": 4,
+      "walls": 12,
+      "organisms": 12,
+      "largestOrganism": 4,
+      "budget": 31,
+      "single": {
+        "authored": 12,
+        "bestFound": 12,
+        "solution": [
+          [
+            "y",
+            5,
+            1
+          ],
+          [
+            "x",
+            2,
+            2
+          ],
+          [
+            "x",
+            7,
+            -7
+          ],
+          [
+            "y",
+            7,
+            -7
+          ],
+          [
+            "x",
+            0,
+            -7
+          ],
+          [
+            "y",
+            0,
+            3
+          ],
+          [
+            "x",
+            3,
+            2
+          ],
+          [
+            "y",
+            4,
+            1
+          ],
+          [
+            "x",
+            2,
+            -7
+          ],
+          [
+            "y",
+            2,
+            2
+          ],
+          [
+            "y",
+            0,
+            -7
+          ],
+          [
+            "x",
+            0,
+            2
+          ]
+        ],
+        "searchStates": 19477,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 8,
+        "bestFound": 8,
+        "solution": [
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            4
+          ],
+          [
+            "x",
+            null,
+            7
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -7
+          ]
+        ],
+        "searchStates": 7191,
+        "optimal": false
+      }
+    },
+    {
+      "level": 33,
+      "name": "Сломанный мост",
+      "size": 8,
+      "cells": 24,
+      "colors": 4,
+      "walls": 8,
+      "organisms": 12,
+      "largestOrganism": 4,
+      "budget": 29,
+      "single": {
+        "authored": 11,
+        "bestFound": 11,
+        "solution": [
+          [
+            "y",
+            3,
+            -1
+          ],
+          [
+            "y",
+            0,
+            -7
+          ],
+          [
+            "x",
+            1,
+            -7
+          ],
+          [
+            "y",
+            7,
+            2
+          ],
+          [
+            "x",
+            4,
+            -7
+          ],
+          [
+            "y",
+            0,
+            3
+          ],
+          [
+            "x",
+            3,
+            1
+          ],
+          [
+            "y",
+            1,
+            1
+          ],
+          [
+            "x",
+            7,
+            3
+          ],
+          [
+            "y",
+            4,
+            -7
+          ],
+          [
+            "y",
+            3,
+            -7
+          ]
+        ],
+        "searchStates": 46966,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            null,
+            -1
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "x",
+            null,
+            5
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "x",
+            null,
+            -7
+          ]
+        ],
+        "searchStates": 11506,
+        "optimal": false
+      }
+    },
+    {
+      "level": 34,
+      "name": "Бабочка",
+      "size": 8,
+      "cells": 24,
+      "colors": 4,
+      "walls": 24,
+      "organisms": 12,
+      "largestOrganism": 4,
+      "budget": 26,
+      "single": {
+        "authored": 9,
+        "bestFound": 9,
+        "solution": [
+          [
+            "y",
+            4,
+            -7
+          ],
+          [
+            "x",
+            7,
+            2
+          ],
+          [
+            "x",
+            7,
+            -3
+          ],
+          [
+            "y",
+            3,
+            -7
+          ],
+          [
+            "x",
+            1,
+            -7
+          ],
+          [
+            "x",
+            4,
+            -2
+          ],
+          [
+            "x",
+            6,
+            -2
+          ],
+          [
+            "y",
+            3,
+            -7
+          ],
+          [
+            "x",
+            1,
+            2
+          ]
+        ],
+        "searchStates": 19756,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 7,
+        "bestFound": 7,
+        "solution": [
+          [
+            "y",
+            null,
+            3
+          ],
+          [
+            "x",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "x",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            -3
+          ],
+          [
+            "y",
+            null,
+            -7
+          ],
+          [
+            "y",
+            null,
+            2
+          ]
+        ],
+        "searchStates": 5226,
+        "optimal": false
+      }
+    },
+    {
+      "level": 35,
+      "name": "Желейный мегаполис",
+      "size": 8,
+      "cells": 24,
+      "colors": 4,
+      "walls": 16,
+      "organisms": 12,
+      "largestOrganism": 4,
+      "budget": 24,
+      "single": {
+        "authored": 8,
+        "bestFound": 8,
+        "solution": [
+          [
+            "y",
+            3,
+            2
+          ],
+          [
+            "x",
+            4,
+            -7
+          ],
+          [
+            "y",
+            0,
+            -7
+          ],
+          [
+            "x",
+            3,
+            4
+          ],
+          [
+            "y",
+            0,
+            4
+          ],
+          [
+            "y",
+            4,
+            -7
+          ],
+          [
+            "x",
+            4,
+            4
+          ],
+          [
+            "x",
+            4,
+            1
+          ]
+        ],
+        "searchStates": 33087,
+        "optimal": false
+      },
+      "allFloor": {
+        "authored": 6,
+        "bestFound": 6,
+        "solution": [
+          [
+            "y",
+            null,
+            2
+          ],
+          [
+            "x",
+            null,
+            3
+          ],
+          [
+            "y",
+            null,
+            1
+          ],
+          [
+            "y",
+            null,
+            -3
+          ],
+          [
+            "x",
+            null,
+            5
+          ],
+          [
+            "y",
+            null,
+            3
+          ]
+        ],
+        "searchStates": 8124,
+        "optimal": false
+      }
+    }
+  ]
+}
