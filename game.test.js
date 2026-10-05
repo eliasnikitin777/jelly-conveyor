@@ -315,8 +315,8 @@ test('all campaign levels clear through all-floor pointer gestures within existi
 });
 
 test('new campaign adds twenty distinct motifs with initial chains and generous budgets',()=>{
-  const levels=require('./levels.js'),newLevels=levels.slice(15);
-  assert.equal(newLevels.length,20);assert.equal(levels.length,35);
+  const levels=require('./levels.js'),newLevels=levels.slice(15,35);
+  assert.equal(newLevels.length,20);
   assert.equal(new Set(newLevels.map(l=>l.name)).size,20);
   assert.equal(new Set(newLevels.map(l=>JSON.stringify([l.size,l.walls]))).size,20);
   assert.ok(new Set(newLevels.map(l=>l.size)).size>=4);
@@ -403,4 +403,76 @@ test('startup without ResizeObserver still sizes and draws the board',()=>{
   assert.equal(g.canvas.width,480);assert.equal(g.canvas.height,480);assert.ok(g.fallbackArcs()>0);
   g.event('pointerdown',60,60);g.event('pointerup',180,60);g.tick(200);
   assert.equal(g.state().movesMade,1);
+});
+
+test('cage levels enclose other colors and release them before their color can clear in either mode',()=>{
+  const levels=require('./levels.js').filter(l=>l.theme==='cage'),{move}=require('./solver.js');
+  assert.equal(levels.length,6);
+  // Flood from every board edge with only this shell blocked. Unreachable
+  // cells are inside a closed organism, rather than merely beside a chain.
+  function interior(shell,size) {
+    const blocked=new Set(shell.map(c=>c.x+','+c.y)),seen=new Set(),queue=[];
+    const add=(x,y)=>{
+      const key=x+','+y;
+      if(x<0||y<0||x>=size||y>=size||blocked.has(key)||seen.has(key))return;
+      seen.add(key);queue.push({x,y});
+    };
+    for(let i=0;i<size;i++){add(i,0);add(i,size-1);add(0,i);add(size-1,i);}
+    for(let i=0;i<queue.length;i++) {
+      const {x,y}=queue[i];add(x-1,y);add(x+1,y);add(x,y-1);add(x,y+1);
+    }
+    return c=>!blocked.has(c.x+','+c.y)&&!seen.has(c.x+','+c.y);
+  }
+  for(const level of levels) {
+    const cages=R.organisms(level.cells).flatMap(shell=>{
+      const captives=level.cells.filter(interior(shell,level.size));
+      return captives.length?[{ids:shell.map(c=>c.id),captives}]:[];
+    });
+    assert.ok(cages.length>0,level.name);
+    if(level.name==='Матрешка')assert.equal(cages.length,2);
+    for(const path of [level.solution,level.allFloorSolution]) {
+      let board=level.cells;
+      for(const [axis,lane,offset] of path) {
+        const shifted=R.shift(board,axis,lane,offset,level.size,level.walls);
+        const next=move(board,level.size,axis,lane,offset,level.walls);
+        for(const cage of cages) {
+          const shell=shifted.filter(c=>cage.ids.includes(c.id));
+          if(!shell.length)continue;
+          const remainsInside=interior(shell,level.size);
+          for(const captive of cage.captives) {
+            const current=shifted.find(c=>c.id===captive.id);
+            assert.ok(current&&remainsInside(current),`${level.name}: captive cannot escape a living shell`);
+            assert.ok(next.some(c=>c.id===captive.id),`${level.name}: shell must clear before captive color`);
+          }
+        }
+        board=next;
+      }
+      assert.deepEqual(board,[]);
+    }
+    assert.ok(level.moves>=Math.max(level.solution.length,level.allFloorSolution.length)+10);
+  }
+});
+
+test('captive jelly cannot move relative to its tight shell until the shell pulse finishes',()=>{
+  const g=game(true),level=require('./levels.js')[35],size=480/level.size;
+  g.openMenu();g.selectLevel(35);
+  const captive=level.cells.find(c=>c.color==='blue'&&c.x===2&&c.y===2);
+  const anchor=level.cells.find(c=>c.color==='green'&&c.x===1&&c.y===1);
+  for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+    g.openMenu();g.selectLevel(35);
+    g.event('pointerdown',2.5*size,2.5*size);
+    g.event('pointerup',(2.5+dx)*size,(2.5+dy)*size);g.tick(200);
+    const state=g.state(),inner=state.cells.find(c=>c.id===captive.id),shell=state.cells.find(c=>c.id===anchor.id);
+    assert.equal(inner.x-shell.x,1);assert.equal(inner.y-shell.y,1);
+  }
+  g.openMenu();g.selectLevel(35);
+  g.event('pointerdown',size/2,size/2);g.event('pointerup',1.5*size,size/2);g.tick(200);
+  assert.equal(g.state().pulsing,true);
+  assert.ok(g.state().cells.some(c=>c.color==='green'));
+  g.event('pointerdown',2.5*size,2.5*size);g.event('pointerup',4.5*size,2.5*size);
+  assert.equal(g.state().cells.find(c=>c.id===captive.id).x,2);
+  g.tick(700);assert.ok(g.state().cells.every(c=>c.color==='blue'));
+  g.event('pointerdown',2.5*size,2.5*size);g.event('pointerup',4.5*size,2.5*size);g.tick(200);
+  assert.equal(g.state().cells.find(c=>c.id===captive.id).x,4);
+  assert.equal(g.state().movesMade,2);
 });

@@ -7266,6 +7266,1013 @@ const ConveyorLevels = [
     ],
     "optimal": false,
     "authorSeed": 35171
+  },
+  {
+    "name": "Желейный пленник",
+    "size": 5,
+    "cells": [
+      {
+        "id": 0,
+        "x": 0,
+        "y": 0,
+        "color": "green"
+      },
+      {
+        "id": 1,
+        "x": 1,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 2,
+        "x": 2,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 3,
+        "x": 3,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 4,
+        "x": 1,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 5,
+        "x": 2,
+        "y": 2,
+        "color": "blue"
+      },
+      {
+        "id": 6,
+        "x": 3,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 7,
+        "x": 1,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 8,
+        "x": 2,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 9,
+        "x": 3,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 10,
+        "x": 4,
+        "y": 4,
+        "color": "blue"
+      }
+    ],
+    "walls": [],
+    "moves": 18,
+    "solution": [
+      [
+        "x",
+        0,
+        1
+      ],
+      [
+        "x",
+        2,
+        2
+      ],
+      [
+        "y",
+        4,
+        -4
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "x",
+        null,
+        -3
+      ],
+      [
+        "y",
+        null,
+        -4
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
+  },
+  {
+    "name": "Длинный футляр",
+    "size": 6,
+    "cells": [
+      {
+        "id": 0,
+        "x": 5,
+        "y": 0,
+        "color": "red"
+      },
+      {
+        "id": 1,
+        "x": 1,
+        "y": 1,
+        "color": "red"
+      },
+      {
+        "id": 2,
+        "x": 2,
+        "y": 1,
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "x": 3,
+        "y": 1,
+        "color": "red"
+      },
+      {
+        "id": 4,
+        "x": 4,
+        "y": 1,
+        "color": "red"
+      },
+      {
+        "id": 5,
+        "x": 1,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 6,
+        "x": 2,
+        "y": 2,
+        "color": "blue"
+      },
+      {
+        "id": 7,
+        "x": 3,
+        "y": 2,
+        "color": "blue"
+      },
+      {
+        "id": 8,
+        "x": 4,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 9,
+        "x": 1,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 10,
+        "x": 2,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 11,
+        "x": 3,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 12,
+        "x": 4,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 13,
+        "x": 0,
+        "y": 5,
+        "color": "blue"
+      }
+    ],
+    "walls": [],
+    "moves": 18,
+    "solution": [
+      [
+        "x",
+        0,
+        -4
+      ],
+      [
+        "y",
+        2,
+        3
+      ],
+      [
+        "x",
+        5,
+        -5
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "y",
+        null,
+        -4
+      ],
+      [
+        "x",
+        null,
+        -5
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
+  },
+  {
+    "name": "Два цвета внутри",
+    "size": 7,
+    "cells": [
+      {
+        "id": 0,
+        "x": 0,
+        "y": 0,
+        "color": "green"
+      },
+      {
+        "id": 1,
+        "x": 1,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 2,
+        "x": 2,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 3,
+        "x": 3,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 4,
+        "x": 4,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 5,
+        "x": 5,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 6,
+        "x": 1,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 7,
+        "x": 2,
+        "y": 2,
+        "color": "blue"
+      },
+      {
+        "id": 8,
+        "x": 5,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 9,
+        "x": 1,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 10,
+        "x": 2,
+        "y": 3,
+        "color": "blue"
+      },
+      {
+        "id": 11,
+        "x": 4,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 12,
+        "x": 5,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 13,
+        "x": 1,
+        "y": 4,
+        "color": "green"
+      },
+      {
+        "id": 14,
+        "x": 4,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 15,
+        "x": 5,
+        "y": 4,
+        "color": "green"
+      },
+      {
+        "id": 16,
+        "x": 1,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 17,
+        "x": 2,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 18,
+        "x": 3,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 19,
+        "x": 4,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 20,
+        "x": 5,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 21,
+        "x": 0,
+        "y": 6,
+        "color": "blue"
+      },
+      {
+        "id": 22,
+        "x": 6,
+        "y": 6,
+        "color": "red"
+      }
+    ],
+    "walls": [],
+    "moves": 18,
+    "solution": [
+      [
+        "x",
+        3,
+        -1
+      ],
+      [
+        "y",
+        1,
+        3
+      ],
+      [
+        "x",
+        3,
+        3
+      ],
+      [
+        "y",
+        6,
+        -6
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "y",
+        null,
+        -5
+      ],
+      [
+        "x",
+        null,
+        -6
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
+  },
+  {
+    "name": "Две капсулы",
+    "size": 8,
+    "cells": [
+      {
+        "id": 0,
+        "x": 4,
+        "y": 0,
+        "color": "green"
+      },
+      {
+        "id": 1,
+        "x": 0,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 2,
+        "x": 1,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 3,
+        "x": 2,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 4,
+        "x": 0,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 5,
+        "x": 1,
+        "y": 2,
+        "color": "blue"
+      },
+      {
+        "id": 6,
+        "x": 2,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 7,
+        "x": 0,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 8,
+        "x": 1,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 9,
+        "x": 2,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 10,
+        "x": 5,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 11,
+        "x": 6,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 12,
+        "x": 7,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 13,
+        "x": 5,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 14,
+        "x": 6,
+        "y": 5,
+        "color": "blue"
+      },
+      {
+        "id": 15,
+        "x": 7,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 16,
+        "x": 5,
+        "y": 6,
+        "color": "red"
+      },
+      {
+        "id": 17,
+        "x": 6,
+        "y": 6,
+        "color": "red"
+      },
+      {
+        "id": 18,
+        "x": 7,
+        "y": 6,
+        "color": "red"
+      },
+      {
+        "id": 19,
+        "x": 3,
+        "y": 7,
+        "color": "red"
+      }
+    ],
+    "walls": [],
+    "moves": 18,
+    "solution": [
+      [
+        "x",
+        2,
+        3
+      ],
+      [
+        "x",
+        5,
+        -2
+      ],
+      [
+        "y",
+        4,
+        -7
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "x",
+        null,
+        -7
+      ],
+      [
+        "y",
+        null,
+        -7
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
+  },
+  {
+    "name": "Матрешка",
+    "size": 9,
+    "cells": [
+      {
+        "id": 0,
+        "x": 0,
+        "y": 0,
+        "color": "green"
+      },
+      {
+        "id": 1,
+        "x": 8,
+        "y": 0,
+        "color": "red"
+      },
+      {
+        "id": 2,
+        "x": 1,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 3,
+        "x": 2,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 4,
+        "x": 3,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 5,
+        "x": 4,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 6,
+        "x": 5,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 7,
+        "x": 6,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 8,
+        "x": 7,
+        "y": 1,
+        "color": "green"
+      },
+      {
+        "id": 9,
+        "x": 1,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 10,
+        "x": 7,
+        "y": 2,
+        "color": "green"
+      },
+      {
+        "id": 11,
+        "x": 1,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 12,
+        "x": 3,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 13,
+        "x": 4,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 14,
+        "x": 5,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 15,
+        "x": 7,
+        "y": 3,
+        "color": "green"
+      },
+      {
+        "id": 16,
+        "x": 1,
+        "y": 4,
+        "color": "green"
+      },
+      {
+        "id": 17,
+        "x": 3,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 18,
+        "x": 4,
+        "y": 4,
+        "color": "blue"
+      },
+      {
+        "id": 19,
+        "x": 5,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 20,
+        "x": 7,
+        "y": 4,
+        "color": "green"
+      },
+      {
+        "id": 21,
+        "x": 1,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 22,
+        "x": 3,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 23,
+        "x": 4,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 24,
+        "x": 5,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 25,
+        "x": 7,
+        "y": 5,
+        "color": "green"
+      },
+      {
+        "id": 26,
+        "x": 1,
+        "y": 6,
+        "color": "green"
+      },
+      {
+        "id": 27,
+        "x": 7,
+        "y": 6,
+        "color": "green"
+      },
+      {
+        "id": 28,
+        "x": 1,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 29,
+        "x": 2,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 30,
+        "x": 3,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 31,
+        "x": 4,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 32,
+        "x": 5,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 33,
+        "x": 6,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 34,
+        "x": 7,
+        "y": 7,
+        "color": "green"
+      },
+      {
+        "id": 35,
+        "x": 8,
+        "y": 8,
+        "color": "blue"
+      }
+    ],
+    "walls": [],
+    "moves": 18,
+    "solution": [
+      [
+        "y",
+        4,
+        -8
+      ],
+      [
+        "x",
+        2,
+        3
+      ],
+      [
+        "y",
+        7,
+        6
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "x",
+        null,
+        -6
+      ],
+      [
+        "y",
+        null,
+        -8
+      ],
+      [
+        "y",
+        null,
+        -8
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
+  },
+  {
+    "name": "Сейф с обходом",
+    "size": 8,
+    "cells": [
+      {
+        "id": 0,
+        "x": 0,
+        "y": 0,
+        "color": "red"
+      },
+      {
+        "id": 1,
+        "x": 7,
+        "y": 0,
+        "color": "blue"
+      },
+      {
+        "id": 2,
+        "x": 2,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "x": 3,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 4,
+        "x": 4,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 5,
+        "x": 5,
+        "y": 2,
+        "color": "red"
+      },
+      {
+        "id": 6,
+        "x": 2,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 7,
+        "x": 5,
+        "y": 3,
+        "color": "red"
+      },
+      {
+        "id": 8,
+        "x": 2,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 9,
+        "x": 3,
+        "y": 4,
+        "color": "blue"
+      },
+      {
+        "id": 10,
+        "x": 4,
+        "y": 4,
+        "color": "green"
+      },
+      {
+        "id": 11,
+        "x": 5,
+        "y": 4,
+        "color": "red"
+      },
+      {
+        "id": 12,
+        "x": 2,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 13,
+        "x": 3,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 14,
+        "x": 4,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 15,
+        "x": 5,
+        "y": 5,
+        "color": "red"
+      },
+      {
+        "id": 16,
+        "x": 0,
+        "y": 7,
+        "color": "green"
+      }
+    ],
+    "walls": [
+      {
+        "x": 2,
+        "y": 1
+      },
+      {
+        "x": 7,
+        "y": 3
+      },
+      {
+        "x": 0,
+        "y": 4
+      },
+      {
+        "x": 5,
+        "y": 6
+      }
+    ],
+    "moves": 20,
+    "solution": [
+      [
+        "y",
+        0,
+        2
+      ],
+      [
+        "x",
+        4,
+        -7
+      ],
+      [
+        "x",
+        0,
+        -4
+      ],
+      [
+        "y",
+        3,
+        4
+      ],
+      [
+        "x",
+        7,
+        -7
+      ]
+    ],
+    "allFloorSolution": [
+      [
+        "x",
+        null,
+        2
+      ],
+      [
+        "y",
+        null,
+        -7
+      ],
+      [
+        "x",
+        null,
+        5
+      ],
+      [
+        "x",
+        null,
+        -4
+      ]
+    ],
+    "optimal": false,
+    "theme": "cage"
   }
 ];
 if (typeof module !== 'undefined') module.exports = ConveyorLevels;
