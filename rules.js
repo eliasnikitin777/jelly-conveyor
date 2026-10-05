@@ -69,7 +69,12 @@ const ConveyorRules = (() => {
   }
   function completed(board) {
     const groups = [];
+    // A visible group is incomplete while another jelly of its color is
+    // still inside a shell. Captives never form bridges through that shell.
+    const hiddenColors = new Set();
+    for (const c of board) for (let inner=c.inside; inner; inner=inner.inside) hiddenColors.add(inner.color);
     for (const color of new Set(board.map(c => c.color))) {
+      if (hiddenColors.has(color)) continue;
       const group = board.filter(c => c.color === color);
       const visited = new Set([group[0].id]), queue = [group[0]];
       while (queue.length) {
@@ -82,6 +87,21 @@ const ConveyorRules = (() => {
     }
     return groups;
   }
-  return { initial, shift, links, completed, organisms, previewLinks };
+  function removeCompleted(board, ids) {
+    const removed = new Set(ids);
+    return board.flatMap(c => !removed.has(c.id) ? [c] : c.inside
+      ? [{...c.inside,x:c.x,y:c.y}] : []);
+  }
+  function settle(board) {
+    let next=board;
+    // Removing a shell can immediately join its child to an adjacent group.
+    // Every pass removes at least one layer, so cascades terminate naturally.
+    for (;;) {
+      const ids=completed(next).flat();
+      if (!ids.length) return next;
+      next=removeCompleted(next,ids);
+    }
+  }
+  return { initial, shift, links, completed, organisms, previewLinks, removeCompleted, settle };
 })();
 if (typeof module !== 'undefined') module.exports = ConveyorRules;

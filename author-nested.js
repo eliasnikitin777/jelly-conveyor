@@ -1,20 +1,19 @@
 'use strict';
-// Handcrafted closed jelly cages. Missing pieces keep each shell incomplete,
-// so captive colors can only meet their outside partners after a shell clears.
+// Handcrafted jelly inside jelly: a captive shares the shell cell until release.
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const R = require('./rules.js');
 const { solve, move } = require('./solver.js');
 const colors = { G:'green', R:'red', B:'blue', O:'orange' };
 const motifs = [
-  ['Желейный пленник', ['G....','.GGG.','.GBG.','.GGG.','....B']],
-  ['Длинный футляр', ['.....R','.RRRR.','.RBBR.','.RRRR.','......','B.....']],
-  ['Два цвета внутри', ['G......','.GGGGG.','.GB..G.','.GB.RG.','.G..RG.','.GGGGG.','B.....R']],
-  ['Две капсулы', ['....G...','GGG.....','GBG.....','GGG.....','.....RRR','.....RBR','.....RRR','...R....']],
-  ['Матрешка', ['G.......R','.GGGGGGG.','.G.....G.','.G.RRR.G.','.G.RBR.G.','.G.RRR.G.','.G.....G.','.GGGGGGG.','........B']],
-  ['Сейф с обходом', ['R......B','..#.....','..RRRR..','..R..R.#','#.RBGR..','..RRRR..','.....#..','G.......']],
+  ['Желейка внутри', ['GG..','....','...G','RR..'], {'1,0':'R'}],
+  ['Две начинки', ['RR...','.....','....R','.....','BB.B.'], {'0,0':'B','4,2':'B'}],
+  ['Разные сердцевины', ['GG....','......','.....G','......','RR..BB','......'], {'1,0':'R','5,2':'B'}],
+  ['Две оболочки', ['GG....','......','..#..G','......','RR....','B....B'], {'1,0':'R','1,4':'B'}],
+  ['Матрешка', ['GG....','......','.....G','..#...','RR....','B....B'], {'1,0':'RB'}],
+  ['Начинка с обходом', ['GG.....','..#..G.','.......','.#.....','RR...R.','...#...','BB....B'], {'0,0':'R','1,0':'B','5,1':'RB'}],
 ];
-function layout([name,rows]) {
+function layout([name,rows,contents]) {
   const size=rows.length,cells=[],walls=[];
   rows.forEach((row,y)=>{
     assert.equal(row.length,size);
@@ -24,6 +23,14 @@ function layout([name,rows]) {
       else assert.equal(char,'.');
     });
   });
+  let nextId=cells.length;
+  for(const c of cells) {
+    let shell=c;
+    for(const char of contents[c.x+','+c.y]||'') {
+      assert.ok(colors[char]);assert.notEqual(shell.color,colors[char]);
+      shell.inside={id:nextId++,color:colors[char]};shell=shell.inside;
+    }
+  }
   assert.equal(R.completed(cells).length,0,`${name}: no color starts complete`);
   return {name,size,cells,walls};
 }
@@ -41,11 +48,11 @@ function author(output) {
       assert.equal(end.length,0);
     }
     const moves=Math.max(18,Math.ceil(Math.max(single.solution.length,all.solution.length)*2)+10);
-    levels.push({...level,moves,solution:single.solution,allFloorSolution:all.solution,optimal:false,theme:'cage'});
+    levels.push({...level,moves,solution:single.solution,allFloorSolution:all.solution,optimal:false,theme:'nested'});
     fs.writeFileSync(output,JSON.stringify(levels,null,2));
     console.log(`Accepted: ${single.solution.length}/${all.solution.length} gestures, budget ${moves}`);
   }
   return levels;
 }
-if(require.main===module)author(process.argv[2]||'/tmp/jelly-cage-levels.json');
+if(require.main===module)author(process.argv[2]||'/tmp/jelly-nested-levels.json');
 module.exports={motifs,layout,author};

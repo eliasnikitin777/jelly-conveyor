@@ -35,9 +35,12 @@ function plural(n,one,few,many) {
   if(n%10===1)return one;
   return n%10>=2&&n%10<=4?few:many;
 }
+function jellyCount(board) {
+  return board.reduce((n,c)=>n+1+(c.inside?jellyCount([c.inside]):0),0);
+}
 function menuTiles() {
   levelGrid.innerHTML = ConveyorLevels.map((level,i) =>
-    `<button type="button" class="level-tile" data-level="${i}" aria-label="Уровень ${i+1}: ${level.name}. Поле ${level.size} на ${level.size}. ${level.moves} ${plural(level.moves,'ход','хода','ходов')}${passedLevels.has(i)?'. Пройден':''}" aria-current="${i===levelIndex}"><strong>${i+1}</strong><span class="level-name">${level.name}</span><span class="level-meta">${level.size}×${level.size} · ${level.cells.length} ${plural(level.cells.length,'желейка','желейки','желеек')}<br>${level.moves} ${plural(level.moves,'ход','хода','ходов')}</span>${passedLevels.has(i)?'<span class="level-check" aria-hidden="true">✓</span>':''}</button>`
+    `<button type="button" class="level-tile" data-level="${i}" aria-label="Уровень ${i+1}: ${level.name}. Поле ${level.size} на ${level.size}. ${level.moves} ${plural(level.moves,'ход','хода','ходов')}${passedLevels.has(i)?'. Пройден':''}" aria-current="${i===levelIndex}"><strong>${i+1}</strong><span class="level-name">${level.name}</span><span class="level-meta">${level.size}×${level.size} · ${jellyCount(level.cells)} ${plural(jellyCount(level.cells),'желейка','желейки','желеек')}<br>${level.moves} ${plural(level.moves,'ход','хода','ходов')}</span>${passedLevels.has(i)?'<span class="level-check" aria-hidden="true">✓</span>':''}</button>`
   ).join('');
 }
 
@@ -111,9 +114,9 @@ function draw(now = performance.now()) {
     else ui();
   }
   if (pulse && now - pulse.start >= pulse.duration) {
-    cells = cells.filter(c => !pulse.ids.has(c.id));
+    cells = ConveyorRules.removeCompleted(cells,pulse.ids);
     pulse = null;
-    resolveBoard(now);
+    finishColors(now);
   }
   if (transition && now - transition.start >= transition.duration) loadLevel(levelIndex + 1, now);
   if (intro && now - intro.start >= intro.duration) intro = null;
@@ -206,9 +209,9 @@ function draw(now = performance.now()) {
     ctx.lineTo(b.px-nx*h,b.py-ny*h);
     ctx.bezierCurveTo(a.px+dx*.65-nx*h*.75,a.py+dy*.65-ny*h*.75,a.px+dx*.35-nx*h*.75,a.py+dy*.35-ny*h*.75,a.px-nx*h,a.py-ny*h);ctx.closePath();
   }
-  function body(b) {
-    const w=size*.74*b.sx,h=size*.74*b.sy;
-    const x=b.px-w/2,y=b.py-h/2,r=Math.min(size*.14,w/2,h/2);
+  function body(b,scale=1) {
+    const w=size*.74*b.sx*scale,h=size*.74*b.sy*scale;
+    const x=b.px-w/2,y=b.py-h/2,r=Math.min(size*.14*scale,w/2,h/2);
     ctx.beginPath();
     if(typeof ctx.roundRect==='function') ctx.roundRect(x,y,w,h,r);
     else {
@@ -227,6 +230,20 @@ function draw(now = performance.now()) {
   for(const [a,b] of edges) {bridge(a,b);const g=ctx.createLinearGradient(a.px,a.py,b.px,b.py);g.addColorStop(0,a.fill);g.addColorStop(1,b.fill);ctx.fillStyle=g;ctx.fill();}
   for(const b of bodies) {
     ctx.fillStyle='white';ctx.beginPath();ctx.ellipse(b.px-size*.22*b.sx,b.py-size*.22*b.sy,size*.075*b.sx,size*.075*b.sy,0,0,Math.PI*2);ctx.fill();
+    // Each captive occupies the shell's cell and follows its continuous motion.
+    // Keep it visible while the shell shrinks away, then grow it to full size.
+    const releasing=pulse?.ids.has(b.id);
+    const t=releasing ? clamp((now-pulse.start)/pulse.duration,0,1) : 0;
+    let scale=.5+.5*clamp((t-.78)/.22,0,1);
+    for(let inner=b.inside;inner;inner=inner.inside) {
+      const visual={...b,sx:releasing?1:b.sx,sy:releasing?1:b.sy};
+      const innerScale=scale;
+      body(visual,innerScale);ctx.fillStyle=palette[inner.color];ctx.fill();
+      ctx.strokeStyle='#202323';ctx.lineWidth=size*.028;ctx.stroke();
+      ctx.fillStyle='white';ctx.beginPath();
+      ctx.ellipse(visual.px-size*.22*visual.sx*innerScale,visual.py-size*.22*visual.sy*innerScale,size*.075*visual.sx*innerScale,size*.075*visual.sy*innerScale,0,0,Math.PI*2);ctx.fill();
+      scale*=.5;
+    }
   }
   ctx.globalAlpha = 1;
   if(!dialogOpen() && (snap||pulse||transition||intro)) frame=requestAnimationFrame(draw);

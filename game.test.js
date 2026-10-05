@@ -21,6 +21,7 @@ function game(campaign = false, allFloor = false, storage = new Map(), capabilit
   vm.createContext(env);
   for(const file of ['rules.js','levels.js'])vm.runInContext(fs.readFileSync(`${__dirname}/${file}`,'utf8'),env);
   if(!campaign) vm.runInContext('ConveyorLevels.splice(0, ConveyorLevels.length, {...ConveyorLevels[1], moves:10})',env);
+  if(capabilities.level)vm.runInContext('ConveyorLevels.splice(0,ConveyorLevels.length,'+JSON.stringify(capabilities.level)+')',env);
   vm.runInContext(fs.readFileSync(`${__dirname}/game.js`,'utf8'),env);
   return {fallbackArcs:()=>fallbackArcs,canvas,storage,setInfinite:value=>{ui['infinite-moves'].checked=value;events['infinite-moveschange']();},openSettings:()=>events['settings-toggleclick'](),closeSettings:()=>events['settings-closeclick'](),setAllFloor:value=>{ui['move-all-floor'].checked=value;events['move-all-floorchange']();},openMenu:()=>events['level-toggleclick'](),closeMenu:()=>events['menu-closeclick'](),selectLevel:index=>events['level-gridclick']({target:{closest:()=>({dataset:{level:String(index)}})}}),retry:()=>events.retryclick(),state:()=>JSON.parse(JSON.stringify(env.window.jellyconveyor.getState())),ui,
     event:(type,x,y)=>events[type]({pointerId:1,clientX:x,clientY:y,pointerType:'mouse',button:0}),
@@ -156,7 +157,7 @@ test('play the full campaign through actual pointer events, including final vict
       const x=axis==='x' ? (along+.5)*size : (lane+.5)*size;
       const y=axis==='y' ? (along+.5)*size : (lane+.5)*size;
       g.event('pointerdown',x,y);g.event('pointerup',x+(axis==='x'?offset*size:0),y+(axis==='y'?offset*size:0));
-      g.tick(200);g.tick(700);
+      g.tick(200);g.tick(700);while(g.state().pulsing)g.tick(700);
     }
     assert.deepEqual(g.state().cells,[]);
     assert.equal(g.state().movesLeft,level.moves-level.solution.length);
@@ -301,7 +302,7 @@ test('all campaign levels clear through all-floor pointer gestures within existi
       const before=g.state();
       g.event('pointerdown',x,y);g.event('pointerup',x+(axis==='x'?offset*size:0),y+(axis==='y'?offset*size:0));
       assert.equal(g.state().movesLeft,before.movesLeft-1);
-      g.tick(200);g.tick(700);
+      g.tick(200);g.tick(700);while(g.state().pulsing)g.tick(700);
       const after=g.state();
       assert.ok(after.cells.every(c=>c.x>=0&&c.y>=0&&c.x<level.size&&c.y<level.size));
       assert.equal(new Set(after.cells.map(c=>c.x+','+c.y)).size,after.cells.length);
@@ -405,74 +406,81 @@ test('startup without ResizeObserver still sizes and draws the board',()=>{
   assert.equal(g.state().movesMade,1);
 });
 
-test('cage levels enclose other colors and release them before their color can clear in either mode',()=>{
-  const levels=require('./levels.js').filter(l=>l.theme==='cage'),{move}=require('./solver.js');
-  assert.equal(levels.length,6);
-  // Flood from every board edge with only this shell blocked. Unreachable
-  // cells are inside a closed organism, rather than merely beside a chain.
-  function interior(shell,size) {
-    const blocked=new Set(shell.map(c=>c.x+','+c.y)),seen=new Set(),queue=[];
-    const add=(x,y)=>{
-      const key=x+','+y;
-      if(x<0||y<0||x>=size||y>=size||blocked.has(key)||seen.has(key))return;
-      seen.add(key);queue.push({x,y});
-    };
-    for(let i=0;i<size;i++){add(i,0);add(i,size-1);add(0,i);add(size-1,i);}
-    for(let i=0;i<queue.length;i++) {
-      const {x,y}=queue[i];add(x-1,y);add(x+1,y);add(x,y-1);add(x,y+1);
-    }
-    return c=>!blocked.has(c.x+','+c.y)&&!seen.has(c.x+','+c.y);
-  }
-  for(const level of levels) {
-    const cages=R.organisms(level.cells).flatMap(shell=>{
-      const captives=level.cells.filter(interior(shell,level.size));
-      return captives.length?[{ids:shell.map(c=>c.id),captives}]:[];
-    });
-    assert.ok(cages.length>0,level.name);
-    if(level.name==='Матрешка')assert.equal(cages.length,2);
-    for(const path of [level.solution,level.allFloorSolution]) {
-      let board=level.cells;
-      for(const [axis,lane,offset] of path) {
-        const shifted=R.shift(board,axis,lane,offset,level.size,level.walls);
-        const next=move(board,level.size,axis,lane,offset,level.walls);
-        for(const cage of cages) {
-          const shell=shifted.filter(c=>cage.ids.includes(c.id));
-          if(!shell.length)continue;
-          const remainsInside=interior(shell,level.size);
-          for(const captive of cage.captives) {
-            const current=shifted.find(c=>c.id===captive.id);
-            assert.ok(current&&remainsInside(current),`${level.name}: captive cannot escape a living shell`);
-            assert.ok(next.some(c=>c.id===captive.id),`${level.name}: shell must clear before captive color`);
-          }
-        }
-        board=next;
-      }
-      assert.deepEqual(board,[]);
-    }
-    assert.ok(level.moves>=Math.max(level.solution.length,level.allFloorSolution.length)+10);
-  }
+test('hidden colors cannot complete or bridge until their shell is removed',()=>{
+  const board=[{id:0,x:0,y:0,color:'green',inside:{id:3,color:'red'}},
+    {id:1,x:1,y:0,color:'red'},{id:2,x:1,y:1,color:'red'}];
+  assert.deepEqual(R.completed(board),[[0]]);
+  assert.deepEqual(R.links(board),[[1,2]]);
+  const released=R.removeCompleted(board,[0]);
+  assert.deepEqual(released[0],{id:3,color:'red',x:0,y:0});
+  assert.deepEqual(R.completed(released),[[3,1,2]]);
+  assert.deepEqual(R.settle(board),[]);
 });
 
-test('captive jelly cannot move relative to its tight shell until the shell pulse finishes',()=>{
-  const g=game(true),level=require('./levels.js')[35],size=480/level.size;
-  g.openMenu();g.selectLevel(35);
-  const captive=level.cells.find(c=>c.color==='blue'&&c.x===2&&c.y===2);
-  const anchor=level.cells.find(c=>c.color==='green'&&c.x===1&&c.y===1);
-  for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]) {
-    g.openMenu();g.selectLevel(35);
-    g.event('pointerdown',2.5*size,2.5*size);
-    g.event('pointerup',(2.5+dx)*size,(2.5+dy)*size);g.tick(200);
-    const state=g.state(),inner=state.cells.find(c=>c.id===captive.id),shell=state.cells.find(c=>c.id===anchor.id);
-    assert.equal(inner.x-shell.x,1);assert.equal(inner.y-shell.y,1);
+test('a captive follows a rigid shell and nested shells release one layer at a time',()=>{
+  const inside={id:2,color:'red',inside:{id:3,color:'blue'}};
+  const board=[{id:0,x:0,y:0,color:'green',inside},{id:1,x:0,y:1,color:'green'}];
+  const moved=R.shift(board,'x',1,2,4);
+  assert.equal(moved[0].x,2);assert.deepEqual(moved[0].inside,inside);
+  assert.equal(R.organisms(moved).length,1);
+  const red=R.removeCompleted(moved,[0,1]);
+  assert.deepEqual(red,[{id:2,color:'red',inside:{id:3,color:'blue'},x:2,y:0}]);
+  assert.deepEqual(R.removeCompleted(red,[2]),[{id:3,color:'blue',x:2,y:0}]);
+  assert.deepEqual(board[0].inside,inside);
+});
+
+test('solver distinguishes shells by all their contained colors',()=>{
+  const {key}=require('./solver.js');
+  const base={id:0,x:0,y:0,color:'green'};
+  const red=[{...base,inside:{id:1,color:'red'}}],blue=[{...base,inside:{id:1,color:'blue'}}];
+  assert.notEqual(key(red),key(blue));assert.notEqual(key(red),key([base]));
+  assert.equal(key(red),key([{...base,id:8,inside:{id:9,color:'red'}}]));
+});
+
+test('six corrected levels contain actual nested jelly with unique identities and verified spare moves',()=>{
+  const levels=require('./levels.js').slice(35);
+  assert.equal(levels.length,6);assert.ok(levels.every(l=>l.theme==='nested'));
+  for(const level of levels) {
+    const ids=new Set();let hidden=0;
+    for(const cell of level.cells) {
+      for(let layer=cell;layer;layer=layer.inside) {
+        assert.ok(!ids.has(layer.id));ids.add(layer.id);
+        if(layer!==cell){hidden++;assert.equal(layer.x,undefined);assert.equal(layer.y,undefined);}
+      }
+    }
+    assert.ok(hidden>0);assert.equal(R.completed(level.cells).length,0);
+    assert.ok(level.moves>=Math.max(level.solution.length,level.allFloorSolution.length)+10);
   }
-  g.openMenu();g.selectLevel(35);
-  g.event('pointerdown',size/2,size/2);g.event('pointerup',1.5*size,size/2);g.tick(200);
+  assert.ok(levels.find(l=>l.name==='Матрешка').cells.some(c=>c.inside?.inside));
+});
+
+test('small jelly remains inside through the disappearance pulse, then becomes movable in the same cell',()=>{
+  const level=require('./levels.js')[35],g=game(false,false,new Map(),{level}),size=480/level.size;
+  const shell=level.cells.find(c=>c.inside),child=shell.inside;
+  g.event('pointerdown',size/2,size/2);g.event('pointerup',2.5*size,size/2);g.tick(200);
+  assert.equal(g.state().cells.find(c=>c.id===shell.id).x,3);
+  assert.equal(g.state().cells.some(c=>c.id===child.id),false);
+  g.event('pointerdown',3.5*size,3.5*size);g.event('pointerup',3.5*size,2.5*size);g.tick(200);
   assert.equal(g.state().pulsing,true);
-  assert.ok(g.state().cells.some(c=>c.color==='green'));
-  g.event('pointerdown',2.5*size,2.5*size);g.event('pointerup',4.5*size,2.5*size);
-  assert.equal(g.state().cells.find(c=>c.id===captive.id).x,2);
-  g.tick(700);assert.ok(g.state().cells.every(c=>c.color==='blue'));
-  g.event('pointerdown',2.5*size,2.5*size);g.event('pointerup',4.5*size,2.5*size);g.tick(200);
-  assert.equal(g.state().cells.find(c=>c.id===captive.id).x,4);
-  assert.equal(g.state().movesMade,2);
+  g.event('pointerdown',3.5*size,size/2);g.event('pointerup',1.5*size,size/2);
+  assert.equal(g.state().movesMade,2);assert.equal(g.state().cells.some(c=>c.id===child.id),false);
+  g.tick(700);
+  assert.deepEqual(g.state().cells.find(c=>c.id===child.id),{...child,x:3,y:0});
+  assert.equal(g.state().cells.some(c=>c.color==='green'),false);
+  g.event('pointerdown',3.5*size,size/2);g.event('pointerup',1.5*size,size/2);g.tick(200);
+  assert.equal(g.state().cells.find(c=>c.id===child.id).x,1);
+  assert.equal(g.state().movesMade,3);
+});
+
+test('release cascades finish on the final allowed move without an extra debit or premature failure',()=>{
+  const level={...require('./levels.js')[35],moves:2},g=game(false,false,new Map(),{level}),size=480/level.size;
+  for(const [axis,lane,offset] of level.solution) {
+    const x=axis==='x'?size/2:(lane+.5)*size,y=axis==='y'?size/2:(lane+.5)*size;
+    g.event('pointerdown',x,y);
+    g.event('pointerup',x+(axis==='x'?offset*size:0),y+(axis==='y'?offset*size:0));g.tick(200);
+    if(g.state().movesLeft)g.tick(700);
+  }
+  assert.equal(g.state().movesLeft,0);assert.equal(g.state().movesMade,2);assert.equal(g.state().stage,'playing');
+  g.tick(700);assert.equal(g.state().pulsing,true);assert.ok(g.state().cells.every(c=>c.color==='red'));
+  g.tick(700);assert.deepEqual(g.state().cells,[]);assert.equal(g.state().stage,'won');assert.equal(g.state().movesMade,2);
 });

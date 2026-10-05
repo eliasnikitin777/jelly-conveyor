@@ -2,19 +2,20 @@
 // Offline authoring tool: searches actual conveyor moves, including rigid
 // organisms, obstacles and removal of completed colors. Never runs in the UI.
 const R = require('./rules.js');
+const layers = c => c.color+(c.inside ? '>'+layers(c.inside) : '');
 const key = board => {
   const colors = new Map();
   for (const c of board) {
-    if (!colors.has(c.color)) colors.set(c.color, []);
-    colors.get(c.color).push(`${c.x},${c.y}`);
+    const kind=layers(c);
+    if (!colors.has(kind)) colors.set(kind, []);
+    colors.get(kind).push(`${c.x},${c.y}`);
   }
   return [...colors].sort(([a],[b])=>a.localeCompare(b))
     .map(([color,positions])=>color+':'+positions.sort().join(';')).join('|');
 };
 function move(board,size,axis,lane,offset,walls=[]) {
   const shifted=R.shift(board,axis,lane,offset,size,walls);
-  const ids=new Set(R.completed(shifted).flat());
-  return shifted.filter(c=>!ids.has(c.id));
+  return R.settle(shifted);
 }
 function score(board) {
   let total=0;

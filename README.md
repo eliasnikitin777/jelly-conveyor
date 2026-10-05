@@ -49,18 +49,18 @@ Clearing the board advances the campaign automatically. Retry and replay control
 | 33 | Сломанный мост | 8 × 8 | 24 | 8 | 11 | 29 |
 | 34 | Бабочка | 8 × 8 | 24 | 24 | 9 | 26 |
 | 35 | Желейный мегаполис | 8 × 8 | 24 | 16 | 8 | 24 |
-| 36 | Желейный пленник | 5 × 5 | 11 | 0 | 3 | 18 |
-| 37 | Длинный футляр | 6 × 6 | 14 | 0 | 3 | 18 |
-| 38 | Два цвета внутри | 7 × 7 | 23 | 0 | 4 | 18 |
-| 39 | Две капсулы | 8 × 8 | 20 | 0 | 3 | 18 |
-| 40 | Матрешка | 9 × 9 | 36 | 0 | 3 | 18 |
-| 41 | Сейф с обходом | 8 × 8 | 17 | 4 | 5 | 20 |
+| 36 | Желейка внутри | 4 × 4 | 6 | 0 | 2 | 18 |
+| 37 | Две начинки | 5 × 5 | 8 | 0 | 3 | 18 |
+| 38 | Разные сердцевины | 6 × 6 | 9 | 0 | 3 | 18 |
+| 39 | Две оболочки | 6 × 6 | 9 | 1 | 4 | 18 |
+| 40 | Матрешка | 6 × 6 | 9 | 1 | 4 | 18 |
+| 41 | Начинка с обходом | 7 × 7 | 13 | 3 | 5 | 20 |
 
 Solutions and budgets count gestures, not transported cells. The new levels start with connected pairs, larger chains, or several disconnected organisms of a color, positioned around islands and corridors of white walls.
 
 `solver.js` is an offline search tool using the actual rigid-organism and wall rules, with color removal. Pass the level's `walls` to `solve(cells, size, { walls })`. It searches every nonzero integer conveyor displacement as one gesture. Pass `allFloor: true` to search simultaneous movement instead of individual lanes. Solutions for both modes are saved in `levels.js` as `solution` and `allFloorSolution`; the first two are shortest by exhaustive breadth-first search, and later ones are verified solutions from beam search without an optimality claim. Budgets deliberately allow generous spare moves.
 
-Run `node --test game.test.js` from the repository directory. The 37 tests replay every solution through the actual pointer handlers in both movement modes, including all 41 levels, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. All-floor solutions take 1–16 gestures and fit the existing generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
+Run `node --test game.test.js` from the repository directory. The 41 tests replay every solution through the actual pointer handlers in both movement modes, including all 41 levels, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. All-floor solutions take 1–16 gestures and fit the existing generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
 
 The all-floor mode was also checked in the Codex browser: a horizontal swipe on an empty row moves cargo in several other rows and spends one move, disabling the setting restores individual-lane movement, and an upward swipe moves multiple columns while a rigid chain stops at a stationary white wall.
 
@@ -74,8 +74,8 @@ INFINITE MOVES removes the move limit and switches the header from MOVES LEFT to
 
 The first 35 levels have difficulty dips; [the audit](difficulty-report.md) and [comparison chart](difficulty-chart.svg) document them. The published campaign retains that order.
 
-Levels 36–41 contain closed jelly cages on 5×5 through 9×9 boards: a single captive, an elongated case, two captive colors, two separate capsules, nested shells, and a safe with stationary obstacles. Each shell has a missing piece outside it; each captive color has a partner outside its shell. Existing rigid-body collisions keep captives enclosed until their shell disappears. A tight cage can carry its captive along, but cannot release it. The nested level clears green, then red, then blue. No new input or special unlock rule is required.
+Levels 36–41 contain jelly inside other jelly on 4×4 through 7×7 boards, including multiple fillings, separate shell colors, nested layers and stationary obstacles. Each `inside` object has a unique identity and shares its shell’s cell; it has no independent coordinates or bridges until released. It moves with the shell. After the shell’s color completes and its disappearance animation ends, its immediate child remains at the same position and becomes a full-size playable jelly. Deeper fillings stay inside their new shell. Hidden jelly counts toward its color, preventing visible partners from clearing early. A release that completes an adjacent color starts another disappearance pulse without spending a move. Loss and victory wait until these cascades finish.
 
-`node author-cages.js /tmp/jelly-cage-levels.json` reproduces these six handcrafted layouts and verified solutions in both modes. Budgets are 18–20 gestures, with at least ten spare moves over the longer saved solution. Regression checks verify enclosure and the shell-before-captive removal order, as well as input during the shell disappearance animation.
+`node author-nested.js /tmp/jelly-nested-levels.json` reproduces the six handcrafted layouts and verified solutions in both modes. Budgets are 18–20 gestures, with at least ten spare moves over the longer saved solution. Regression checks cover movement with the shell, hidden-color completion, layer-by-layer release, solver identity, disappearance timing and a cascade on the final allowed move.
 
-Browser verification also completed level 40 with individual-lane native swipes (green shell, red shell, blue pair) and level 41 with Move All Floor, reaching the final 41/41 victory screen with no console errors.
+Level 36 was also completed in the Codex browser with native swipes: the miniature pink jelly moved inside a green jelly, became independent after the green chain vanished, then moved separately and joined its pink partners. No console errors were observed.
