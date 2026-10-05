@@ -4,23 +4,25 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const R = require('./rules.js');
-function game(campaign = false, allFloor = false, storage = new Map()) {
+function game(campaign = false, allFloor = false, storage = new Map(), capabilities = {}) {
   const events = {}, ui = Object.fromEntries(['count','level','overlay','overlay-title','overlay-text','retry','level-toggle','level-menu','menu-close','level-grid','settings-toggle','settings-menu','settings-close','move-all-floor','infinite-moves','count-label','move-counter'].map(id=>[id,{setAttribute(){},addEventListener:(type,f)=>events[id+type]=f}]));
   let now=0, raf, capture=false;
-  const ctx=new Proxy({createLinearGradient:()=>({addColorStop(){}})}, {get:(o,k)=>o[k]||(()=>{})});
-  const canvas={setAttribute(){},getContext:()=>ctx,getBoundingClientRect:()=>({left:0,top:0,width:480}),addEventListener:(k,f)=>events[k]=f,setPointerCapture:()=>capture=true,hasPointerCapture:()=>capture,releasePointerCapture:()=>capture=false};
+  let fallbackArcs=0;
+  const ctx=new Proxy({createLinearGradient:()=>({addColorStop(){}})}, {get:(o,k)=>k==='roundRect'&&capabilities.roundRect===false?undefined:k==='arcTo'?()=>fallbackArcs++:o[k]||(()=>{})});
+  const canvas={style:{},setAttribute(){},getContext:()=>ctx,getBoundingClientRect:()=>({left:0,top:0,width:480}),addEventListener:(k,f)=>events[k]=f,setPointerCapture:()=>capture=true,hasPointerCapture:()=>capture,releasePointerCapture:()=>capture=false};
   for(const id of ['level-menu','settings-menu']) {
     ui[id].open=false;
     ui[id].showModal=function(){this.open=true;};
     ui[id].close=function(){this.open=false;events[id+'close']();};
   }
   if(allFloor !== null) storage.set('jellyconveyor-move-all',String(allFloor));
-  const env={localStorage:{getItem:key=>storage.get(key) ?? null,setItem:(key,value)=>storage.set(key,value)},document:{getElementById:id=>id==='game'?canvas:ui[id]},window:{},devicePixelRatio:1,performance:{now:()=>now},requestAnimationFrame:f=>(raf=f,1),cancelAnimationFrame:()=>{},ResizeObserver:class {constructor(f){this.f=f;}observe(){this.f();}}};
+  const env={localStorage:{getItem:key=>storage.get(key) ?? null,setItem:(key,value)=>storage.set(key,value)},document:{getElementById:id=>id==='game'?canvas:ui[id]},window:{addEventListener:(k,f)=>events['window'+k]=f},devicePixelRatio:1,performance:{now:()=>now},requestAnimationFrame:f=>(raf=f,1),cancelAnimationFrame:()=>{},ResizeObserver:class {constructor(f){this.f=f;}observe(){this.f();}}};
+  if(capabilities.resizeObserver===false)delete env.ResizeObserver;
   vm.createContext(env);
   for(const file of ['rules.js','levels.js'])vm.runInContext(fs.readFileSync(`${__dirname}/${file}`,'utf8'),env);
   if(!campaign) vm.runInContext('ConveyorLevels.splice(0, ConveyorLevels.length, {...ConveyorLevels[1], moves:10})',env);
   vm.runInContext(fs.readFileSync(`${__dirname}/game.js`,'utf8'),env);
-  return {storage,setInfinite:value=>{ui['infinite-moves'].checked=value;events['infinite-moveschange']();},openSettings:()=>events['settings-toggleclick'](),closeSettings:()=>events['settings-closeclick'](),setAllFloor:value=>{ui['move-all-floor'].checked=value;events['move-all-floorchange']();},openMenu:()=>events['level-toggleclick'](),closeMenu:()=>events['menu-closeclick'](),selectLevel:index=>events['level-gridclick']({target:{closest:()=>({dataset:{level:String(index)}})}}),retry:()=>events.retryclick(),state:()=>JSON.parse(JSON.stringify(env.window.jellyconveyor.getState())),ui,
+  return {fallbackArcs:()=>fallbackArcs,canvas,storage,setInfinite:value=>{ui['infinite-moves'].checked=value;events['infinite-moveschange']();},openSettings:()=>events['settings-toggleclick'](),closeSettings:()=>events['settings-closeclick'](),setAllFloor:value=>{ui['move-all-floor'].checked=value;events['move-all-floorchange']();},openMenu:()=>events['level-toggleclick'](),closeMenu:()=>events['menu-closeclick'](),selectLevel:index=>events['level-gridclick']({target:{closest:()=>({dataset:{level:String(index)}})}}),retry:()=>events.retryclick(),state:()=>JSON.parse(JSON.stringify(env.window.jellyconveyor.getState())),ui,
     event:(type,x,y)=>events[type]({pointerId:1,clientX:x,clientY:y,pointerType:'mouse',button:0}),
     tick:ms=>{now+=ms;const f=raf;raf=null;if(f)f(now);}};
 }
@@ -387,4 +389,18 @@ test('enabling unlimited mode rescues an exhausted level without restoring its c
   g.closeSettings();g.event('pointerdown',60,60);g.event('pointerup',180,60);g.tick(200);
   assert.equal(g.state().movesMade,11);
   g.retry();assert.equal(g.state().movesMade,0);assert.equal(g.state().infiniteMoves,true);
+});
+
+
+test('older Canvas without roundRect still draws jelly and accepts gestures',()=>{
+  const g=game(false,false,new Map(),{roundRect:false});
+  assert.ok(g.fallbackArcs()>0);assert.equal(g.canvas.style.height,'480px');
+  g.event('pointerdown',60,60);g.event('pointerup',180,60);g.tick(200);
+  assert.equal(g.state().movesMade,1);assert.equal(g.state().cells.find(c=>c.id===0).x,1);
+});
+test('startup without ResizeObserver still sizes and draws the board',()=>{
+  const g=game(false,false,new Map(),{resizeObserver:false,roundRect:false});
+  assert.equal(g.canvas.width,480);assert.equal(g.canvas.height,480);assert.ok(g.fallbackArcs()>0);
+  g.event('pointerdown',60,60);g.event('pointerup',180,60);g.tick(200);
+  assert.equal(g.state().movesMade,1);
 });

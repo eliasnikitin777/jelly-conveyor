@@ -83,6 +83,7 @@ function loadLevel(index, now = performance.now()) {
 function resize() {
   width = canvas.getBoundingClientRect().width; size = width / boardSize;
   const dpr = devicePixelRatio || 1;
+  canvas.style.height = width + 'px';
   canvas.width = canvas.height = Math.round(width * dpr);
   ctx.setTransform(dpr,0,0,dpr,0,0);
   draw();
@@ -207,7 +208,16 @@ function draw(now = performance.now()) {
   }
   function body(b) {
     const w=size*.74*b.sx,h=size*.74*b.sy;
-    ctx.beginPath();ctx.roundRect(b.px-w/2,b.py-h/2,w,h,Math.min(size*.14,w/2,h/2));
+    const x=b.px-w/2,y=b.py-h/2,r=Math.min(size*.14,w/2,h/2);
+    ctx.beginPath();
+    if(typeof ctx.roundRect==='function') ctx.roundRect(x,y,w,h,r);
+    else {
+      // Older browsers can draw the same rounded body with standard arcs.
+      ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+      ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+      ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+      ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();
+    }
   }
   ctx.strokeStyle='#202323';ctx.lineWidth=size*.045;ctx.lineJoin='round';
   for(const [a,b] of edges) {ctx.lineWidth=size*.045*bridgeStrength(a,b);bridge(a,b);ctx.stroke();}
@@ -318,6 +328,7 @@ levelGrid.addEventListener('click',e=>{
   loadLevel(index);draw();
 });
 loadLevel(0);
-new ResizeObserver(resize).observe(canvas);
+if(typeof ResizeObserver==='function') new ResizeObserver(resize).observe(canvas);
+else { resize(); window.addEventListener('resize',resize); }
 // Read-only state for diagnostics and browser verification.
 window.jellyconveyor={getState:()=>({level:levelIndex+1,boardSize,walls:walls.map(w=>({...w})),menuOpen:!!levelMenu.open,settingsOpen:!!settingsMenu.open,moveAllFloor,infiniteMoves,stage,visibleLinks:visibleLinks.map(edge=>[...edge]),cells:cells.map(c=>({...c})),movesLeft,movesMade,gesture:gesture?{axis:gesture.axis,lane:gesture.lane,offset:gesture.offset}:null,animating:!!snap,pulsing:!!pulse})};
