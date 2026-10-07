@@ -292,10 +292,12 @@ test('settings pauses animations, blocks input, and switching mode costs no move
   g.event('pointerdown',60,180);g.event('pointerup',300,180);g.tick(200);
   assert.equal(g.state().movesLeft,8); // The individual empty row moves only the floor.
 });
-test('all campaign levels clear through all-floor pointer gestures within existing budgets',()=>{
+test('legacy levels with saved all-floor solutions clear through all-floor pointer gestures within budgets',()=>{
   const g=game(true,true),levels=require('./levels.js');
   for(let index=0;index<levels.length;index++) {
     const level=levels[index],size=480/level.size;
+    if(!level.allFloorSolution)continue;
+    g.openMenu();g.selectLevel(index);
     assert.equal(g.state().level,index+1);
     assert.ok(level.moves>=level.allFloorSolution.length+2);
     for(const [axis,lane,offset] of level.allFloorSolution) {
@@ -491,15 +493,30 @@ test('release cascades finish on the final allowed move without an extra debit o
 test('completion marks survive removal of old levels 4 and 5 without shifting twice',()=>{
   const storage=new Map([['jellyconveyor-passed',JSON.stringify([0,3,4,5,40])]]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[1,36]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[36]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[1,36]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[36]);
 });
 
 test('progress from the 39-level campaign migrates once to 37 levels',()=>{
   const storage=new Map([['jellyconveyor-passed','[0,1,2,38]'],['jellyconveyor-campaign-version','without-4-5']]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,36]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[36]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,36]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[36]);
+});
+
+test('redesigned opening clears only its own completion marks and keeps later progress and settings',()=>{
+  const storage=new Map([
+    ['jellyconveyor-passed','[0,4,9,10,36]'],
+    ['jellyconveyor-campaign-version','without-1-2-4-5'],
+    ['jellyconveyor-infinite-moves','true'],
+    ['jellyconveyor-move-all','true'],
+  ]);
+  const g=game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[10,36]);
+  assert.equal(g.state().infiniteMoves,true);
+  assert.equal(g.state().moveAllFloor,true);
+  game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[10,36]);
 });

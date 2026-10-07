@@ -3,114 +3,7 @@
 // Budgets deliberately allow spare moves; optimality is claimed only where proven.
 const ConveyorLevels = [
   {
-    "size": 4,
-    "moves": 12,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 3,
-        "y": 1,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 1,
-        "y": 3,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 3,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 4,
-        "x": 1,
-        "y": 1,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 3,
-        "y": 3,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 0,
-        "y": 2,
-        "color": "blue"
-      },
-      {
-        "id": 7,
-        "x": 2,
-        "y": 2,
-        "color": "blue"
-      },
-      {
-        "id": 8,
-        "x": 0,
-        "y": 3,
-        "color": "blue"
-      }
-    ],
-    "solution": [
-      [
-        "y",
-        1,
-        -3
-      ],
-      [
-        "x",
-        1,
-        -3
-      ],
-      [
-        "x",
-        3,
-        1
-      ],
-      [
-        "y",
-        3,
-        -3
-      ],
-      [
-        "x",
-        0,
-        -3
-      ]
-    ],
-    "optimal": false,
-    "name": "Третий цвет",
-    "walls": [],
-    "allFloorSolution": [
-      [
-        "x",
-        null,
-        -3
-      ],
-      [
-        "y",
-        null,
-        2
-      ],
-      [
-        "y",
-        null,
-        -3
-      ]
-    ]
-  },
-  {
-    "name": "Объезд",
+    "name": "Вокруг клумбы",
     "size": 4,
     "cells": [
       {
@@ -127,24 +20,12 @@ const ConveyorLevels = [
       },
       {
         "id": 2,
-        "x": 3,
-        "y": 3,
-        "color": "green"
-      },
-      {
-        "id": 3,
         "x": 0,
         "y": 2,
         "color": "red"
       },
       {
-        "id": 4,
-        "x": 2,
-        "y": 2,
-        "color": "red"
-      },
-      {
-        "id": 5,
+        "id": 3,
         "x": 2,
         "y": 3,
         "color": "red"
@@ -154,646 +35,454 @@ const ConveyorLevels = [
       {
         "x": 1,
         "y": 1
-      },
-      {
-        "x": 2,
-        "y": 1
       }
     ],
-    "solution": [
-      [
-        "x",
-        0,
-        2
-      ],
-      [
-        "y",
-        3,
-        -3
-      ],
-      [
-        "x",
-        2,
-        -3
-      ]
-    ],
-    "optimal": false,
     "moves": 10,
-    "allFloorSolution": [
+    "solution": [
       [
         "x",
-        null,
+        0,
+        -3
+      ],
+      [
+        "x",
+        2,
+        2
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 74000
+  },
+  {
+    "size": 4,
+    "cells": [
+      {
+        "x": 1,
+        "y": 3,
+        "color": "green",
+        "id": 0
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "color": "red",
+        "id": 3
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "color": "red",
+        "id": 5
+      }
+    ],
+    "walls": [
+      {
+        "x": 2,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "name": "Почтовые ящики",
+    "moves": 12,
+    "solution": [
+      [
+        "y",
+        0,
         2
       ],
       [
+        "x",
+        0,
+        1
+      ],
+      [
         "y",
-        null,
+        3,
         -3
       ]
-    ]
-  },
-  {
-    "name": "Две цепочки",
-    "size": 5,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 4,
-        "y": 3,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 4,
-        "y": 4,
-        "color": "green"
-      },
-      {
-        "id": 4,
-        "x": 0,
-        "y": 3,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 0,
-        "y": 4,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 3,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 7,
-        "x": 4,
-        "y": 0,
-        "color": "red"
-      }
-    ],
-    "walls": [
-      {
-        "x": 2,
-        "y": 2
-      }
-    ],
-    "solution": [
-      [
-        "x",
-        3,
-        -4
-      ],
-      [
-        "y",
-        0,
-        2
-      ],
-      [
-        "x",
-        3,
-        3
-      ],
-      [
-        "y",
-        3,
-        -4
-      ]
     ],
     "optimal": false,
-    "moves": 12,
-    "allFloorSolution": [
-      [
-        "x",
-        null,
-        -4
-      ],
-      [
-        "y",
-        null,
-        -4
-      ],
-      [
-        "x",
-        null,
-        -4
-      ]
-    ]
+    "theme": "opening",
+    "authorSeed": 76319
   },
   {
-    "name": "Остров",
     "size": 5,
     "cells": [
       {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 4,
-        "y": 4,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 0,
+        "x": 3,
         "y": 3,
-        "color": "red"
-      },
-      {
-        "id": 4,
-        "x": 0,
-        "y": 4,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 4,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 2,
-        "y": 4,
-        "color": "blue"
-      },
-      {
-        "id": 7,
-        "x": 3,
-        "y": 4,
-        "color": "blue"
-      },
-      {
-        "id": 8,
-        "x": 1,
-        "y": 2,
-        "color": "blue"
-      }
-    ],
-    "walls": [
-      {
-        "x": 2,
-        "y": 1
-      },
-      {
-        "x": 2,
-        "y": 2
+        "color": "green",
+        "id": 0
       },
       {
         "x": 3,
-        "y": 1
-      }
-    ],
-    "solution": [
-      [
-        "y",
-        4,
-        3
-      ],
-      [
-        "x",
-        3,
-        -4
-      ],
-      [
-        "y",
-        1,
-        3
-      ],
-      [
-        "x",
-        3,
-        3
-      ]
-    ],
-    "optimal": false,
-    "moves": 12,
-    "allFloorSolution": [
-      [
-        "y",
-        null,
-        3
-      ],
-      [
-        "x",
-        null,
-        -4
-      ],
-      [
-        "y",
-        null,
-        -4
-      ]
-    ]
-  },
-  {
-    "name": "Поворот",
-    "size": 5,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 1,
-        "y": 4,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 4,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 4,
-        "x": 4,
         "y": 1,
-        "color": "red"
+        "color": "green",
+        "id": 1
       },
       {
-        "id": 5,
-        "x": 0,
-        "y": 4,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 2,
-        "y": 2,
-        "color": "blue"
-      },
-      {
-        "id": 7,
-        "x": 2,
-        "y": 3,
-        "color": "blue"
-      },
-      {
-        "id": 8,
         "x": 4,
         "y": 4,
-        "color": "blue"
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "color": "red",
+        "id": 3
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "color": "red",
+        "id": 5
       }
     ],
     "walls": [
       {
-        "x": 1,
+        "x": 2,
         "y": 1
       },
       {
-        "x": 1,
+        "x": 2,
         "y": 2
       },
       {
-        "x": 3,
-        "y": 2
-      },
-      {
-        "x": 3,
+        "x": 2,
         "y": 3
       }
     ],
-    "solution": [
-      [
-        "x",
-        4,
-        -4
-      ],
-      [
-        "x",
-        4,
-        1
-      ],
-      [
-        "y",
-        2,
-        -4
-      ],
-      [
-        "x",
-        4,
-        3
-      ],
-      [
-        "y",
-        4,
-        -4
-      ]
-    ],
-    "optimal": false,
+    "name": "Две пристани",
     "moves": 14,
-    "allFloorSolution": [
+    "solution": [
       [
         "x",
-        null,
-        -4
-      ],
-      [
-        "y",
-        null,
-        -4
-      ],
-      [
-        "x",
-        null,
+        3,
         1
       ],
       [
         "y",
-        null,
-        -4
-      ],
-      [
-        "x",
-        null,
-        3
-      ]
-    ]
-  },
-  {
-    "name": "Ключи",
-    "size": 6,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 0,
-        "y": 1,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 5,
-        "y": 4,
-        "color": "green"
-      },
-      {
-        "id": 4,
-        "x": 4,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 5,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 5,
-        "y": 1,
-        "color": "red"
-      },
-      {
-        "id": 7,
-        "x": 0,
-        "y": 5,
-        "color": "red"
-      },
-      {
-        "id": 8,
-        "x": 0,
-        "y": 3,
-        "color": "blue"
-      },
-      {
-        "id": 9,
-        "x": 0,
-        "y": 4,
-        "color": "blue"
-      },
-      {
-        "id": 10,
-        "x": 3,
-        "y": 5,
-        "color": "blue"
-      },
-      {
-        "id": 11,
-        "x": 4,
-        "y": 5,
-        "color": "blue"
-      }
-    ],
-    "walls": [
-      {
-        "x": 2,
-        "y": 2
-      },
-      {
-        "x": 3,
-        "y": 2
-      },
-      {
-        "x": 2,
-        "y": 3
-      },
-      {
-        "x": 3,
-        "y": 3
-      }
-    ],
-    "solution": [
-      [
-        "x",
-        4,
-        -5
-      ],
-      [
-        "x",
-        5,
-        -5
+        3,
+        2
       ],
       [
         "y",
         1,
-        -5
+        4
       ],
       [
         "x",
-        5,
-        5
-      ],
-      [
-        "y",
         4,
-        3
+        -4
       ]
     ],
     "optimal": false,
-    "moves": 16,
-    "allFloorSolution": [
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        1
-      ],
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        -5
-      ]
-    ]
+    "theme": "opening",
+    "authorSeed": 76018
   },
   {
-    "name": "Коридоры",
-    "size": 6,
+    "size": 5,
     "cells": [
       {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 5,
-        "y": 5,
-        "color": "green"
-      },
-      {
-        "id": 3,
         "x": 4,
-        "y": 5,
-        "color": "green"
-      },
-      {
-        "id": 4,
-        "x": 5,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 5,
         "y": 1,
-        "color": "red"
+        "color": "green",
+        "id": 0
       },
       {
-        "id": 6,
+        "x": 4,
+        "y": 0,
+        "color": "green",
+        "id": 1
+      },
+      {
         "x": 0,
-        "y": 5,
-        "color": "red"
+        "y": 2,
+        "color": "green",
+        "id": 2
       },
       {
-        "id": 7,
+        "x": 2,
+        "y": 0,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "color": "red",
+        "id": 4
+      },
+      {
         "x": 0,
         "y": 4,
-        "color": "red"
+        "color": "red",
+        "id": 5
       },
       {
-        "id": 8,
-        "x": 2,
-        "y": 0,
-        "color": "blue"
-      },
-      {
-        "id": 9,
         "x": 3,
         "y": 0,
-        "color": "blue"
+        "color": "red",
+        "id": 6
       },
       {
-        "id": 10,
-        "x": 2,
-        "y": 5,
-        "color": "blue"
-      },
-      {
-        "id": 11,
-        "x": 3,
-        "y": 5,
-        "color": "blue"
+        "x": 0,
+        "y": 1,
+        "color": "red",
+        "id": 7
       }
     ],
     "walls": [
       {
         "x": 1,
-        "y": 2
-      },
-      {
-        "x": 2,
-        "y": 2
+        "y": 1
       },
       {
         "x": 3,
-        "y": 2
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 3
       },
       {
         "x": 3,
         "y": 3
       }
     ],
+    "name": "Замочная скважина",
+    "moves": 14,
     "solution": [
       [
         "y",
-        5,
-        -5
+        2,
+        2
+      ],
+      [
+        "x",
+        2,
+        3
+      ],
+      [
+        "x",
+        0,
+        -4
+      ],
+      [
+        "y",
+        0,
+        2
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 77682
+  },
+  {
+    "size": 5,
+    "cells": [
+      {
+        "x": 0,
+        "y": 4,
+        "color": "green",
+        "id": 0
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "color": "red",
+        "id": 5
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "color": "red",
+        "id": 7
+      }
+    ],
+    "walls": [
+      {
+        "x": 2,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 2
+      },
+      {
+        "x": 3,
+        "y": 2
+      },
+      {
+        "x": 2,
+        "y": 3
+      }
+    ],
+    "name": "Вертушка",
+    "moves": 15,
+    "solution": [
+      [
+        "x",
+        0,
+        -4
+      ],
+      [
+        "y",
+        0,
+        2
+      ],
+      [
+        "x",
+        4,
+        -4
+      ],
+      [
+        "y",
+        1,
+        1
+      ],
+      [
+        "x",
+        4,
+        2
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 81442
+  },
+  {
+    "size": 5,
+    "cells": [
+      {
+        "x": 3,
+        "y": 4,
+        "color": "green",
+        "id": 0,
+        "inside": {
+          "id": 8,
+          "color": "red"
+        }
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "color": "red",
+        "id": 5
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "color": "red",
+        "id": 7
+      }
+    ],
+    "walls": [
+      {
+        "x": 2,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 3
+      }
+    ],
+    "name": "Секрет в кармане",
+    "moves": 15,
+    "solution": [
+      [
+        "y",
+        2,
+        -4
       ],
       [
         "y",
@@ -802,170 +491,74 @@ const ConveyorLevels = [
       ],
       [
         "x",
-        1,
-        3
+        2,
+        1
       ],
       [
         "y",
-        5,
-        3
-      ],
-      [
-        "x",
-        5,
-        3
-      ],
-      [
-        "x",
         3,
-        -5
+        -4
       ],
       [
-        "y",
-        4,
-        -5
+        "x",
+        0,
+        1
       ]
     ],
     "optimal": false,
-    "moves": 20,
-    "allFloorSolution": [
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        -2
-      ],
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        3
-      ],
-      [
-        "x",
-        null,
-        3
-      ],
-      [
-        "y",
-        null,
-        2
-      ],
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "y",
-        null,
-        -2
-      ],
-      [
-        "x",
-        null,
-        -5
-      ],
-      [
-        "x",
-        null,
-        4
-      ],
-      [
-        "y",
-        null,
-        5
-      ],
-      [
-        "x",
-        null,
-        -5
-      ]
-    ]
+    "theme": "opening",
+    "authorSeed": 79176
   },
   {
-    "name": "Четыре угла",
     "size": 6,
     "cells": [
       {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 4,
-        "y": 3,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 5,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 4,
         "x": 5,
         "y": 1,
-        "color": "red"
+        "color": "green",
+        "id": 0
       },
       {
-        "id": 5,
+        "x": 4,
+        "y": 1,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "color": "green",
+        "id": 2
+      },
+      {
         "x": 1,
-        "y": 3,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 0,
         "y": 5,
-        "color": "blue"
+        "color": "green",
+        "id": 3
       },
       {
-        "id": 7,
-        "x": 0,
-        "y": 4,
-        "color": "blue"
-      },
-      {
-        "id": 8,
-        "x": 4,
-        "y": 2,
-        "color": "blue"
-      },
-      {
-        "id": 9,
-        "x": 4,
-        "y": 5,
-        "color": "orange"
-      },
-      {
-        "id": 10,
         "x": 5,
         "y": 5,
-        "color": "orange"
+        "color": "red",
+        "id": 4
       },
       {
-        "id": 11,
+        "x": 4,
+        "y": 5,
+        "color": "red",
+        "id": 5
+      },
+      {
         "x": 1,
+        "y": 0,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 3,
         "y": 2,
-        "color": "orange"
+        "color": "red",
+        "id": 7
       }
     ],
     "walls": [
@@ -978,33 +571,455 @@ const ConveyorLevels = [
         "y": 1
       },
       {
+        "x": 1,
+        "y": 3
+      },
+      {
+        "x": 4,
+        "y": 3
+      }
+    ],
+    "name": "Разводной мост",
+    "moves": 17,
+    "solution": [
+      [
+        "x",
+        5,
+        -2
+      ],
+      [
+        "y",
+        3,
+        -5
+      ],
+      [
+        "x",
+        5,
+        5
+      ],
+      [
+        "y",
+        5,
+        -5
+      ],
+      [
+        "y",
+        1,
+        2
+      ],
+      [
+        "x",
+        2,
+        1
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 80185
+  },
+  {
+    "size": 6,
+    "cells": [
+      {
+        "x": 5,
+        "y": 4,
+        "color": "green",
+        "id": 0
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "color": "red",
+        "id": 5
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "color": "red",
+        "id": 7
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "color": "blue",
+        "id": 8
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "color": "blue",
+        "id": 9
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "color": "blue",
+        "id": 10
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "color": "blue",
+        "id": 11
+      }
+    ],
+    "walls": [
+      {
         "x": 2,
-        "y": 4
+        "y": 1
+      },
+      {
+        "x": 2,
+        "y": 2
       },
       {
         "x": 3,
         "y": 4
       }
     ],
+    "name": "Три лепестка",
+    "moves": 19,
     "solution": [
       [
         "x",
-        3,
-        3
+        2,
+        1
       ],
       [
         "y",
-        4,
+        1,
         1
       ],
       [
         "x",
         3,
-        -5
+        4
+      ],
+      [
+        "x",
+        5,
+        3
       ],
       [
         "y",
         4,
+        2
+      ],
+      [
+        "x",
+        5,
+        -5
+      ],
+      [
+        "y",
+        1,
+        2
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 81456
+  },
+  {
+    "size": 6,
+    "cells": [
+      {
+        "x": 0,
+        "y": 1,
+        "color": "green",
+        "id": 0,
+        "inside": {
+          "id": 12,
+          "color": "red"
+        }
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "color": "green",
+        "id": 1,
+        "inside": {
+          "id": 13,
+          "color": "blue"
+        }
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "color": "red",
+        "id": 5
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "color": "red",
+        "id": 7
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "color": "blue",
+        "id": 8
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "color": "blue",
+        "id": 9
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "color": "blue",
+        "id": 10
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "color": "blue",
+        "id": 11
+      }
+    ],
+    "walls": [
+      {
+        "x": 2,
+        "y": 1
+      },
+      {
+        "x": 3,
+        "y": 3
+      }
+    ],
+    "name": "Посылка с сюрпризом",
+    "moves": 21,
+    "solution": [
+      [
+        "y",
+        4,
+        -5
+      ],
+      [
+        "x",
+        0,
+        -5
+      ],
+      [
+        "y",
+        1,
+        2
+      ],
+      [
+        "x",
+        2,
+        3
+      ],
+      [
+        "x",
+        4,
+        -5
+      ],
+      [
+        "y",
+        0,
+        -5
+      ],
+      [
+        "x",
+        4,
+        -1
+      ],
+      [
+        "y",
+        1,
+        -5
+      ]
+    ],
+    "optimal": false,
+    "theme": "opening",
+    "authorSeed": 82465
+  },
+  {
+    "size": 6,
+    "cells": [
+      {
+        "x": 3,
+        "y": 2,
+        "color": "green",
+        "id": 0,
+        "inside": {
+          "id": 12,
+          "color": "red",
+          "inside": {
+            "id": 13,
+            "color": "blue"
+          }
+        }
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "color": "green",
+        "id": 1
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "color": "green",
+        "id": 2
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "color": "green",
+        "id": 3
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "color": "red",
+        "id": 4
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "color": "red",
+        "id": 5
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "color": "red",
+        "id": 6
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "color": "red",
+        "id": 7
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "color": "blue",
+        "id": 8
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "color": "blue",
+        "id": 9
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "color": "blue",
+        "id": 10
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "color": "blue",
+        "id": 11
+      }
+    ],
+    "walls": [
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 4,
+        "y": 1
+      },
+      {
+        "x": 2,
+        "y": 3
+      },
+      {
+        "x": 3,
+        "y": 3
+      }
+    ],
+    "name": "Сад матрешек",
+    "moves": 23,
+    "solution": [
+      [
+        "x",
+        0,
+        -5
+      ],
+      [
+        "y",
+        0,
+        2
+      ],
+      [
+        "x",
+        2,
+        2
+      ],
+      [
+        "x",
+        4,
+        -5
+      ],
+      [
+        "y",
+        0,
         -5
       ],
       [
@@ -1014,482 +1029,23 @@ const ConveyorLevels = [
       ],
       [
         "y",
-        0,
-        2
-      ]
-    ],
-    "optimal": false,
-    "moves": 20,
-    "allFloorSolution": [
-      [
-        "y",
-        null,
-        -2
-      ],
-      [
-        "x",
-        null,
-        3
-      ],
-      [
-        "y",
-        null,
-        4
-      ],
-      [
-        "x",
-        null,
+        2,
         -5
       ],
       [
         "y",
-        null,
-        -5
-      ]
-    ]
-  },
-  {
-    "name": "В обход",
-    "size": 7,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 0,
-        "y": 1,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 6,
-        "y": 5,
-        "color": "green"
-      },
-      {
-        "id": 4,
-        "x": 5,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 6,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 6,
-        "y": 1,
-        "color": "red"
-      },
-      {
-        "id": 7,
-        "x": 0,
-        "y": 6,
-        "color": "red"
-      },
-      {
-        "id": 8,
-        "x": 0,
-        "y": 4,
-        "color": "blue"
-      },
-      {
-        "id": 9,
-        "x": 0,
-        "y": 5,
-        "color": "blue"
-      },
-      {
-        "id": 10,
-        "x": 3,
-        "y": 6,
-        "color": "blue"
-      },
-      {
-        "id": 11,
-        "x": 4,
-        "y": 6,
-        "color": "blue"
-      },
-      {
-        "id": 12,
-        "x": 3,
-        "y": 0,
-        "color": "orange"
-      },
-      {
-        "id": 13,
-        "x": 3,
-        "y": 1,
-        "color": "orange"
-      },
-      {
-        "id": 14,
-        "x": 5,
-        "y": 5,
-        "color": "orange"
-      },
-      {
-        "id": 15,
-        "x": 6,
-        "y": 6,
-        "color": "orange"
-      }
-    ],
-    "walls": [
-      {
-        "x": 2,
-        "y": 2
-      },
-      {
-        "x": 3,
-        "y": 2
-      },
-      {
-        "x": 4,
-        "y": 2
-      },
-      {
-        "x": 2,
-        "y": 3
-      },
-      {
-        "x": 4,
-        "y": 3
-      }
-    ],
-    "solution": [
-      [
-        "y",
-        6,
-        -2
-      ],
-      [
-        "x",
-        5,
-        3
-      ],
-      [
-        "x",
-        6,
-        5
-      ],
-      [
-        "y",
-        5,
-        -6
-      ],
-      [
-        "y",
-        6,
-        -6
-      ],
-      [
-        "x",
-        0,
-        3
-      ],
-      [
-        "x",
-        0,
-        -6
-      ]
-    ],
-    "optimal": false,
-    "moves": 22,
-    "allFloorSolution": [
-      [
-        "x",
-        null,
-        4
-      ],
-      [
-        "x",
-        null,
-        -6
-      ],
-      [
-        "y",
-        null,
-        -6
-      ],
-      [
-        "x",
-        null,
-        -6
-      ],
-      [
-        "y",
-        null,
-        -6
-      ]
-    ]
-  },
-  {
-    "name": "Архипелаг",
-    "size": 7,
-    "cells": [
-      {
-        "id": 0,
-        "x": 0,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 1,
-        "x": 1,
-        "y": 0,
-        "color": "green"
-      },
-      {
-        "id": 2,
-        "x": 6,
-        "y": 5,
-        "color": "green"
-      },
-      {
-        "id": 3,
-        "x": 6,
-        "y": 6,
-        "color": "green"
-      },
-      {
-        "id": 4,
-        "x": 5,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 5,
-        "x": 6,
-        "y": 0,
-        "color": "red"
-      },
-      {
-        "id": 6,
-        "x": 0,
-        "y": 5,
-        "color": "red"
-      },
-      {
-        "id": 7,
-        "x": 0,
-        "y": 6,
-        "color": "red"
-      },
-      {
-        "id": 8,
-        "x": 2,
-        "y": 0,
-        "color": "blue"
-      },
-      {
-        "id": 9,
-        "x": 3,
-        "y": 0,
-        "color": "blue"
-      },
-      {
-        "id": 10,
-        "x": 3,
-        "y": 6,
-        "color": "blue"
-      },
-      {
-        "id": 11,
-        "x": 4,
-        "y": 6,
-        "color": "blue"
-      },
-      {
-        "id": 12,
-        "x": 0,
-        "y": 3,
-        "color": "orange"
-      },
-      {
-        "id": 13,
-        "x": 0,
-        "y": 4,
-        "color": "orange"
-      },
-      {
-        "id": 14,
-        "x": 6,
-        "y": 2,
-        "color": "orange"
-      },
-      {
-        "id": 15,
-        "x": 6,
-        "y": 3,
-        "color": "orange"
-      }
-    ],
-    "walls": [
-      {
-        "x": 1,
-        "y": 2
-      },
-      {
-        "x": 2,
-        "y": 2
-      },
-      {
-        "x": 4,
-        "y": 1
-      },
-      {
-        "x": 4,
-        "y": 2
-      },
-      {
-        "x": 2,
-        "y": 4
-      },
-      {
-        "x": 3,
-        "y": 4
-      },
-      {
-        "x": 5,
-        "y": 4
-      }
-    ],
-    "solution": [
-      [
-        "y",
-        0,
-        -6
-      ],
-      [
-        "x",
-        6,
-        -6
-      ],
-      [
-        "y",
-        6,
-        3
-      ],
-      [
-        "x",
-        3,
-        -6
-      ],
-      [
-        "y",
-        0,
-        -6
-      ],
-      [
-        "x",
-        5,
-        -6
-      ],
-      [
-        "x",
-        3,
+        2,
         1
       ],
       [
-        "y",
-        0,
-        2
-      ],
-      [
         "x",
-        3,
-        4
-      ],
-      [
-        "y",
-        0,
-        -6
-      ],
-      [
-        "y",
-        5,
-        -6
-      ],
-      [
-        "x",
-        0,
-        -6
+        2,
+        3
       ]
     ],
     "optimal": false,
-    "moves": 30,
-    "allFloorSolution": [
-      [
-        "y",
-        null,
-        2
-      ],
-      [
-        "x",
-        null,
-        -6
-      ],
-      [
-        "y",
-        null,
-        2
-      ],
-      [
-        "x",
-        null,
-        -6
-      ],
-      [
-        "y",
-        null,
-        -6
-      ],
-      [
-        "x",
-        null,
-        -6
-      ],
-      [
-        "y",
-        null,
-        -6
-      ],
-      [
-        "x",
-        null,
-        3
-      ],
-      [
-        "y",
-        null,
-        4
-      ],
-      [
-        "x",
-        null,
-        4
-      ],
-      [
-        "y",
-        null,
-        -6
-      ]
-    ]
+    "theme": "opening",
+    "authorSeed": 83081
   },
   {
     "name": "Большие организмы",

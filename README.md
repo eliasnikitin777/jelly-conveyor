@@ -16,16 +16,16 @@ Clearing the board advances the campaign automatically. Retry and replay control
 | --- | --- | --- | --- | --- | --- | --- |
 
 
-| 1 | Третий цвет | 4 × 4 | 9 | 0 | 5 | 12 |
-| 2 | Объезд | 4 × 4 | 6 | 2 | 3 | 10 |
-| 3 | Две цепочки | 5 × 5 | 8 | 1 | 4 | 12 |
-| 4 | Остров | 5 × 5 | 9 | 3 | 4 | 12 |
-| 5 | Поворот | 5 × 5 | 9 | 4 | 5 | 14 |
-| 6 | Ключи | 6 × 6 | 12 | 4 | 5 | 16 |
-| 7 | Коридоры | 6 × 6 | 12 | 4 | 7 | 20 |
-| 8 | Четыре угла | 6 × 6 | 12 | 4 | 6 | 20 |
-| 9 | В обход | 7 × 7 | 16 | 5 | 7 | 22 |
-| 10 | Архипелаг | 7 × 7 | 16 | 7 | 12 | 30 |
+| 1 | Вокруг клумбы | 4 × 4 | 4 | 1 | 2 | 10 |
+| 2 | Почтовые ящики | 4 × 4 | 6 | 2 | 3 | 12 |
+| 3 | Две пристани | 5 × 5 | 6 | 3 | 4 | 14 |
+| 4 | Замочная скважина | 5 × 5 | 8 | 4 | 4 | 14 |
+| 5 | Вертушка | 5 × 5 | 8 | 4 | 5 | 15 |
+| 6 | Секрет в кармане | 5 × 5 | 9 | 2 | 5 | 15 |
+| 7 | Разводной мост | 6 × 6 | 8 | 4 | 6 | 17 |
+| 8 | Три лепестка | 6 × 6 | 12 | 3 | 7 | 19 |
+| 9 | Посылка с сюрпризом | 6 × 6 | 14 | 2 | 8 | 21 |
+| 10 | Сад матрешек | 6 × 6 | 14 | 4 | 9 | 23 |
 | 11 | Большие организмы | 7 × 7 | 20 | 7 | 14 | 34 |
 | 12 | Бублик | 5 × 5 | 10 | 1 | 4 | 24 |
 | 13 | Шахматные острова | 6 × 6 | 15 | 4 | 10 | 27 |
@@ -56,9 +56,9 @@ Clearing the board advances the campaign automatically. Retry and replay control
 
 Solutions and budgets count gestures, not transported cells. The new levels start with connected pairs, larger chains, or several disconnected organisms of a color, positioned around islands and corridors of white walls.
 
-`solver.js` is an offline search tool using the actual rigid-organism and wall rules, with color removal. Pass the level's `walls` to `solve(cells, size, { walls })`. It searches every nonzero integer conveyor displacement as one gesture. Pass `allFloor: true` to search simultaneous movement instead of individual lanes. Solutions for both modes are saved in `levels.js` as `solution` and `allFloorSolution`; the first two are shortest by exhaustive breadth-first search, and later ones are verified solutions from beam search without an optimality claim. Budgets deliberately allow generous spare moves.
+`solver.js` is an offline search tool using the actual rigid-organism and wall rules, with color removal. Pass the level's `walls` to `solve(cells, size, { walls })`. It searches every nonzero integer conveyor displacement as one gesture. Pass `allFloor: true` to search simultaneous movement instead of individual lanes. Ordinary-mode solutions are saved in `levels.js` as `solution`. Legacy levels also retain `allFloorSolution`. Solutions use beam search without an optimality claim. Budgets deliberately allow generous spare moves.
 
-Run `node --test game.test.js` from the repository directory. The 43 tests replay every solution through the actual pointer handlers in both movement modes, including all 37 levels, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. All-floor solutions take 1–16 gestures and fit the existing generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
+Run `node --test game.test.js` from the repository directory. The regression tests replay every solution through the actual pointer handlers in both movement modes, including all 37 levels in ordinary mode, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. The first ten redesigned levels are authored and verified only in ordinary mode. Saved all-floor solutions for the remaining levels still fit their generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
 
 The all-floor mode was also checked in the Codex browser: a horizontal swipe on an empty row moves cargo in several other rows and spends one move, disabling the setting restores individual-lane movement, and an upward swipe moves multiple columns while a rigid chain stops at a stationary white wall.
 
@@ -70,7 +70,7 @@ After extending the campaign, levels 20 (Песочные часы) and 35 (Же
 
 INFINITE MOVES removes the move limit and switches the header from MOVES LEFT to MOVES MADE. Only changed cargo positions on a committed gesture count; cancellation, reversal, empty lanes and blocked gestures count zero. Moves made are tracked from the start of each level in both modes. Enabling the option retains the board and allows an exhausted level to continue; disabling it restores the remaining budget, floored at zero, and shows exhaustion if necessary. Changing levels or retrying resets the counter to zero. The option persists in local storage.
 
-The first 35 levels have difficulty dips; [the audit](difficulty-report.md) and [comparison chart](difficulty-chart.svg) document them. The published campaign retains that order.
+The original campaign had difficulty dips; [the audit](difficulty-report.md) and [comparison chart](difficulty-chart.svg) document them. These reports describe the historical campaign and do not include the redesigned opening.
 
 Levels 32–37 contain jelly inside other jelly on 4×4 through 7×7 boards, including multiple fillings, separate shell colors, nested layers and stationary obstacles. Each `inside` object has a unique identity and shares its shell’s cell; it has no independent coordinates or bridges until released. It moves with the shell. After the shell’s color completes and its disappearance animation ends, its immediate child remains at the same position and becomes a full-size playable jelly. Deeper fillings stay inside their new shell. Hidden jelly counts toward its color, preventing visible partners from clearing early. A release that completes an adjacent color starts another disappearance pulse without spending a move. Loss and victory wait until these cascades finish.
 
@@ -82,4 +82,6 @@ Shared instructions live in the repository-root [AGENTS.md](AGENTS.md), includin
 
 Original levels 4 (Большое поле) and 5 (Четыре цвета) are temporarily removed; subsequent levels are renumbered. Saved completion marks are migrated to the new numbering.
 
-The first two tutorial levels are also temporarily removed. The campaign now starts with Третий цвет and contains 37 levels.
+The first two tutorial levels are also temporarily removed. The campaign contains 37 levels.
+
+The first ten levels form a new opening: small obstacle puzzles, connected chains, two banks, a keyhole, a pinwheel, a hidden filling, a drawbridge, three colors and nested layers. `node author-opening.js /tmp/jelly-opening-levels.json` reproduces the deterministic layouts and ordinary-mode solutions. Verified routes take 2, 3, 4, 4, 5, 5, 6, 7, 8 and 9 gestures; these are not claimed to be shortest. Budgets are 10–23 moves. Move All Floor remains available but its solutions are not a constraint for this opening. Completion marks for the replaced ten puzzles reset; later completion marks and settings remain.

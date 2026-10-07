@@ -28,17 +28,22 @@ let menuPausedAt = null;
 let passedLevels = new Set();
 try {
   const saved = JSON.parse(localStorage.getItem('jellyconveyor-passed') || '[]');
-  if (Array.isArray(saved) && !['without-4-5', 'without-1-2-4-5'].includes(localStorage.getItem('jellyconveyor-campaign-version'))) {
+  if (Array.isArray(saved) && !['without-4-5', 'without-1-2-4-5', 'creative-opening-1'].includes(localStorage.getItem('jellyconveyor-campaign-version'))) {
     const remapped = saved.filter(i => Number.isInteger(i) && i !== 3 && i !== 4).map(i => i >= 5 ? i - 2 : i);
     saved.splice(0, saved.length, ...remapped);
     localStorage.setItem('jellyconveyor-passed', JSON.stringify(saved));
     localStorage.setItem('jellyconveyor-campaign-version', 'without-4-5');
   }
-  if (Array.isArray(saved) && localStorage.getItem('jellyconveyor-campaign-version') !== 'without-1-2-4-5') {
+  if (Array.isArray(saved) && !['without-1-2-4-5', 'creative-opening-1'].includes(localStorage.getItem('jellyconveyor-campaign-version'))) {
     const remapped = saved.filter(i => Number.isInteger(i) && i >= 2).map(i => i - 2);
     saved.splice(0, saved.length, ...remapped);
     localStorage.setItem('jellyconveyor-passed', JSON.stringify(saved));
     localStorage.setItem('jellyconveyor-campaign-version', 'without-1-2-4-5');
+  }
+  if (Array.isArray(saved) && localStorage.getItem('jellyconveyor-campaign-version') !== 'creative-opening-1') {
+    saved.splice(0, saved.length, ...saved.filter(i => Number.isInteger(i) && i >= 10));
+    localStorage.setItem('jellyconveyor-passed', JSON.stringify(saved));
+    localStorage.setItem('jellyconveyor-campaign-version', 'creative-opening-1');
   }
   if (Array.isArray(saved)) passedLevels = new Set(saved.filter(i => Number.isInteger(i) && i >= 0 && i < ConveyorLevels.length));
 } catch {}
