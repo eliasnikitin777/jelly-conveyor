@@ -316,7 +316,7 @@ test('all campaign levels clear through all-floor pointer gestures within existi
 });
 
 test('new campaign adds twenty distinct motifs with initial chains and generous budgets',()=>{
-  const levels=require('./levels.js'),newLevels=levels.slice(15,35);
+  const levels=require('./levels.js'),newLevels=levels.slice(13,33);
   assert.equal(newLevels.length,20);
   assert.equal(new Set(newLevels.map(l=>l.name)).size,20);
   assert.equal(new Set(newLevels.map(l=>JSON.stringify([l.size,l.walls]))).size,20);
@@ -438,7 +438,7 @@ test('solver distinguishes shells by all their contained colors',()=>{
 });
 
 test('six corrected levels contain actual nested jelly with unique identities and verified spare moves',()=>{
-  const levels=require('./levels.js').slice(35);
+  const levels=require('./levels.js').slice(33);
   assert.equal(levels.length,6);assert.ok(levels.every(l=>l.theme==='nested'));
   for(const level of levels) {
     const ids=new Set();let hidden=0;
@@ -455,7 +455,7 @@ test('six corrected levels contain actual nested jelly with unique identities an
 });
 
 test('small jelly remains inside through the disappearance pulse, then becomes movable in the same cell',()=>{
-  const level=require('./levels.js')[35],g=game(false,false,new Map(),{level}),size=480/level.size;
+  const level=require('./levels.js')[33],g=game(false,false,new Map(),{level}),size=480/level.size;
   const shell=level.cells.find(c=>c.inside),child=shell.inside;
   g.event('pointerdown',size/2,size/2);g.event('pointerup',2.5*size,size/2);g.tick(200);
   assert.equal(g.state().cells.find(c=>c.id===shell.id).x,3);
@@ -473,7 +473,7 @@ test('small jelly remains inside through the disappearance pulse, then becomes m
 });
 
 test('release cascades finish on the final allowed move without an extra debit or premature failure',()=>{
-  const level={...require('./levels.js')[35],moves:2},g=game(false,false,new Map(),{level}),size=480/level.size;
+  const level={...require('./levels.js')[33],moves:2},g=game(false,false,new Map(),{level}),size=480/level.size;
   for(const [axis,lane,offset] of level.solution) {
     const x=axis==='x'?size/2:(lane+.5)*size,y=axis==='y'?size/2:(lane+.5)*size;
     g.event('pointerdown',x,y);
@@ -483,4 +483,12 @@ test('release cascades finish on the final allowed move without an extra debit o
   assert.equal(g.state().movesLeft,0);assert.equal(g.state().movesMade,2);assert.equal(g.state().stage,'playing');
   g.tick(700);assert.equal(g.state().pulsing,true);assert.ok(g.state().cells.every(c=>c.color==='red'));
   g.tick(700);assert.deepEqual(g.state().cells,[]);assert.equal(g.state().stage,'won');assert.equal(g.state().movesMade,2);
+});
+
+test('completion marks survive removal of old levels 4 and 5 without shifting twice',()=>{
+  const storage=new Map([['jellyconveyor-passed',JSON.stringify([0,3,4,5,40])]]);
+  game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,3,38]);
+  game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,3,38]);
 });
