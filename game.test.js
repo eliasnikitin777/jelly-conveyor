@@ -4,6 +4,8 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const R = require('./rules.js');
+const tutorialFixture = {"size": 4, "moves": 8, "cells": [{"id": 0, "x": 0, "y": 0, "color": "green"}, {"id": 1, "x": 3, "y": 0, "color": "green"}, {"id": 2, "x": 3, "y": 3, "color": "green"}, {"id": 3, "x": 0, "y": 2, "color": "red"}, {"id": 4, "x": 2, "y": 2, "color": "red"}, {"id": 5, "x": 1, "y": 3, "color": "red"}], "solution": [["x", 0, 2], ["y", 2, 2], ["x", 2, 1]], "optimal": true, "name": "Три желейки", "walls": [], "allFloorSolution": [["x", null, -3], ["y", null, -3]]};
+const introFixture = {"size": 3, "moves": 5, "cells": [{"id": 0, "x": 0, "y": 0, "color": "green"}, {"id": 1, "x": 2, "y": 0, "color": "green"}, {"id": 2, "x": 0, "y": 2, "color": "red"}, {"id": 3, "x": 2, "y": 2, "color": "red"}], "solution": [["x", 0, -2], ["x", 2, -2]], "optimal": true, "name": "Первые ленты", "walls": [], "allFloorSolution": [["x", null, -2]]};
 function game(campaign = false, allFloor = false, storage = new Map(), capabilities = {}) {
   const events = {}, ui = Object.fromEntries(['count','level','overlay','overlay-title','overlay-text','retry','level-toggle','level-menu','menu-close','level-grid','settings-toggle','settings-menu','settings-close','move-all-floor','infinite-moves','count-label','move-counter'].map(id=>[id,{setAttribute(){},addEventListener:(type,f)=>events[id+type]=f}]));
   let now=0, raf, capture=false;
@@ -20,7 +22,8 @@ function game(campaign = false, allFloor = false, storage = new Map(), capabilit
   if(capabilities.resizeObserver===false)delete env.ResizeObserver;
   vm.createContext(env);
   for(const file of ['rules.js','levels.js'])vm.runInContext(fs.readFileSync(`${__dirname}/${file}`,'utf8'),env);
-  if(!campaign) vm.runInContext('ConveyorLevels.splice(0, ConveyorLevels.length, {...ConveyorLevels[1], moves:10})',env);
+  if(!campaign) vm.runInContext('ConveyorLevels.splice(0, ConveyorLevels.length,'+JSON.stringify({...tutorialFixture,moves:10})+')',env);
+  if(capabilities.tutorials)vm.runInContext('ConveyorLevels.unshift('+JSON.stringify(introFixture)+','+JSON.stringify(tutorialFixture)+')',env);
   if(capabilities.level)vm.runInContext('ConveyorLevels.splice(0,ConveyorLevels.length,'+JSON.stringify(capabilities.level)+')',env);
   vm.runInContext(fs.readFileSync(`${__dirname}/game.js`,'utf8'),env);
   return {fallbackArcs:()=>fallbackArcs,canvas,storage,setInfinite:value=>{ui['infinite-moves'].checked=value;events['infinite-moveschange']();},openSettings:()=>events['settings-toggleclick'](),closeSettings:()=>events['settings-closeclick'](),setAllFloor:value=>{ui['move-all-floor'].checked=value;events['move-all-floorchange']();},openMenu:()=>events['level-toggleclick'](),closeMenu:()=>events['menu-closeclick'](),selectLevel:index=>events['level-gridclick']({target:{closest:()=>({dataset:{level:String(index)}})}}),retry:()=>events.retryclick(),state:()=>JSON.parse(JSON.stringify(env.window.jellyconveyor.getState())),ui,
@@ -215,7 +218,7 @@ test('dragging a white wall is ignored',()=>{
   assert.deepEqual(g.state().cells,before.cells);
 });
 test('opening the menu pauses an ongoing color pulse; closing resumes it',()=>{
-  const g=game(true);g.event('pointerdown',400,80);g.event('pointerup',80,80);g.tick(200);
+  const g=game(true,false,new Map(),{level:introFixture});g.event('pointerdown',400,80);g.event('pointerup',80,80);g.tick(200);
   assert.equal(g.state().pulsing,true);
   g.openMenu();g.tick(5000);
   assert.equal(g.state().pulsing,true);assert.equal(g.state().cells.length,4);
@@ -247,7 +250,7 @@ test('all-floor collisions propagate simultaneously while chains remain rigid',(
   assert.equal(fractional[0].x,.6);assert.equal(fractional[1].x,.6);assert.equal(fractional[3].x,3);
 });
 test('all-floor gesture moves different lanes, previews both colors and spends once on release',()=>{
-  const g=game(true,true),before=g.state();
+  const g=game(true,true,new Map(),{tutorials:true}),before=g.state();
   g.event('pointerdown',80,240);g.event('pointermove',176,240);
   assert.equal(g.state().gesture.lane,null);assert.equal(g.state().visibleLinks.length,2);
   assert.equal(g.state().movesLeft,before.movesLeft);assert.deepEqual(g.state().cells,before.cells);
@@ -258,7 +261,7 @@ test('all-floor gesture moves different lanes, previews both colors and spends o
   g.tick(700);assert.deepEqual(g.state().cells,[]);
 });
 test('all-floor reversal and cancellation restore preview, cargo and budget',()=>{
-  const g=game(true,true),before=g.state();
+  const g=game(true,true,new Map(),{tutorials:true}),before=g.state();
   g.event('pointerdown',80,240);g.event('pointermove',176,240);
   assert.equal(g.state().visibleLinks.length,2);
   g.event('pointermove',80,240);assert.deepEqual(g.state().visibleLinks,[]);
@@ -278,7 +281,7 @@ test('all-floor swipe may begin on a white wall while that wall remains stationa
   assert.deepEqual(after.cells,R.shift(before.cells,'x',null,1,before.boardSize,before.walls));
 });
 test('settings pauses animations, blocks input, and switching mode costs no move',()=>{
-  const g=game(true,true);g.event('pointerdown',80,240);g.event('pointerup',240,240);g.tick(200);
+  const g=game(true,true,new Map(),{tutorials:true});g.event('pointerdown',80,240);g.event('pointerup',240,240);g.tick(200);
   const before=g.state();assert.equal(before.pulsing,true);
   g.openSettings();g.setAllFloor(false);g.tick(5000);
   g.event('pointerdown',80,240);assert.equal(g.state().gesture,null);
@@ -316,7 +319,7 @@ test('all campaign levels clear through all-floor pointer gestures within existi
 });
 
 test('new campaign adds twenty distinct motifs with initial chains and generous budgets',()=>{
-  const levels=require('./levels.js'),newLevels=levels.slice(13,33);
+  const levels=require('./levels.js'),newLevels=levels.slice(11,31);
   assert.equal(newLevels.length,20);
   assert.equal(new Set(newLevels.map(l=>l.name)).size,20);
   assert.equal(new Set(newLevels.map(l=>JSON.stringify([l.size,l.walls]))).size,20);
@@ -373,7 +376,7 @@ test('unlimited counter ignores cancelled, blocked, empty and reversed gestures'
   assert.equal(g.state().movesMade,1);assert.equal(g.ui.count.textContent,1);
 });
 test('unlimited setting survives level selection but each level resets made moves',()=>{
-  const g=game(true,true);g.setInfinite(true);
+  const g=game(true,true,new Map(),{tutorials:true});g.setInfinite(true);
   g.event('pointerdown',80,240);g.event('pointerup',240,240);g.tick(200);g.tick(700);
   assert.deepEqual(g.state().cells,[]);assert.equal(g.state().stage,'between');assert.equal(g.ui.count.textContent,1);
   g.tick(900);assert.equal(g.state().level,2);assert.equal(g.ui.count.textContent,0);
@@ -438,7 +441,7 @@ test('solver distinguishes shells by all their contained colors',()=>{
 });
 
 test('six corrected levels contain actual nested jelly with unique identities and verified spare moves',()=>{
-  const levels=require('./levels.js').slice(33);
+  const levels=require('./levels.js').slice(31);
   assert.equal(levels.length,6);assert.ok(levels.every(l=>l.theme==='nested'));
   for(const level of levels) {
     const ids=new Set();let hidden=0;
@@ -455,7 +458,7 @@ test('six corrected levels contain actual nested jelly with unique identities an
 });
 
 test('small jelly remains inside through the disappearance pulse, then becomes movable in the same cell',()=>{
-  const level=require('./levels.js')[33],g=game(false,false,new Map(),{level}),size=480/level.size;
+  const level=require('./levels.js')[31],g=game(false,false,new Map(),{level}),size=480/level.size;
   const shell=level.cells.find(c=>c.inside),child=shell.inside;
   g.event('pointerdown',size/2,size/2);g.event('pointerup',2.5*size,size/2);g.tick(200);
   assert.equal(g.state().cells.find(c=>c.id===shell.id).x,3);
@@ -473,7 +476,7 @@ test('small jelly remains inside through the disappearance pulse, then becomes m
 });
 
 test('release cascades finish on the final allowed move without an extra debit or premature failure',()=>{
-  const level={...require('./levels.js')[33],moves:2},g=game(false,false,new Map(),{level}),size=480/level.size;
+  const level={...require('./levels.js')[31],moves:2},g=game(false,false,new Map(),{level}),size=480/level.size;
   for(const [axis,lane,offset] of level.solution) {
     const x=axis==='x'?size/2:(lane+.5)*size,y=axis==='y'?size/2:(lane+.5)*size;
     g.event('pointerdown',x,y);
@@ -488,7 +491,15 @@ test('release cascades finish on the final allowed move without an extra debit o
 test('completion marks survive removal of old levels 4 and 5 without shifting twice',()=>{
   const storage=new Map([['jellyconveyor-passed',JSON.stringify([0,3,4,5,40])]]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,3,38]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[1,36]);
   game(true,null,storage);
-  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,3,38]);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[1,36]);
+});
+
+test('progress from the 39-level campaign migrates once to 37 levels',()=>{
+  const storage=new Map([['jellyconveyor-passed','[0,1,2,38]'],['jellyconveyor-campaign-version','without-4-5']]);
+  game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,36]);
+  game(true,null,storage);
+  assert.deepEqual(JSON.parse(storage.get('jellyconveyor-passed')),[0,36]);
 });

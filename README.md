@@ -8,57 +8,57 @@ Move All Floor is disabled by default. Enable it in Settings: drag anywhere on t
 
 During a drag, bridges preview the connections at the rounded release position. Their width grows with alignment and withdraws when the drag returns. Previewing never commits a merge or completes a color. One move is spent on release only if cargo positions change. A color disappears after all its jelly joins one group and pulses.
 
-УРОВНИ at the top left opens a table of all 39 levels. Настройки at the top right contains Move All Floor and INFINITE MOVES checkboxes, both disabled by default. Every level can be selected immediately. Opening either menu pauses animations and automatic progression; closing it resumes the current game. Choosing a level starts it with its own board and full budget. Completed levels are marked with a check; completion marks and the movement setting persist in local storage. Escape, the close button, or a click outside the menu closes it.
+УРОВНИ at the top left opens a table of all 37 levels. Настройки at the top right contains Move All Floor and INFINITE MOVES checkboxes, both disabled by default. Every level can be selected immediately. Opening either menu pauses animations and automatic progression; closing it resumes the current game. Choosing a level starts it with its own board and full budget. Completed levels are marked with a check; completion marks and the movement setting persist in local storage. Escape, the close button, or a click outside the menu closes it.
 
 Clearing the board advances the campaign automatically. Retry and replay controls appear inside the board only after losing or completing the campaign.
 
 | Level | Name | Board | Jelly | Walls | Verified solution | Budget |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Первые ленты | 3 × 3 | 4 | 0 | 2 | 5 |
-| 2 | Три желейки | 4 × 4 | 6 | 0 | 3 | 8 |
-| 3 | Третий цвет | 4 × 4 | 9 | 0 | 5 | 12 |
-| 4 | Объезд | 4 × 4 | 6 | 2 | 3 | 10 |
-| 5 | Две цепочки | 5 × 5 | 8 | 1 | 4 | 12 |
-| 6 | Остров | 5 × 5 | 9 | 3 | 4 | 12 |
-| 7 | Поворот | 5 × 5 | 9 | 4 | 5 | 14 |
-| 8 | Ключи | 6 × 6 | 12 | 4 | 5 | 16 |
-| 9 | Коридоры | 6 × 6 | 12 | 4 | 7 | 20 |
-| 10 | Четыре угла | 6 × 6 | 12 | 4 | 6 | 20 |
-| 11 | В обход | 7 × 7 | 16 | 5 | 7 | 22 |
-| 12 | Архипелаг | 7 × 7 | 16 | 7 | 12 | 30 |
-| 13 | Большие организмы | 7 × 7 | 20 | 7 | 14 | 34 |
-| 14 | Бублик | 5 × 5 | 10 | 1 | 4 | 24 |
-| 15 | Шахматные острова | 6 × 6 | 15 | 4 | 10 | 27 |
-| 16 | Две двери | 6 × 6 | 15 | 3 | 6 | 24 |
-| 17 | Подкова | 6 × 6 | 15 | 8 | 12 | 31 |
-| 18 | Песочные часы | 7 × 7 | 12 | 18 | 5 | 24 |
-| 19 | Лестница | 6 × 6 | 15 | 4 | 9 | 26 |
-| 20 | Длинные руки | 7 × 7 | 18 | 5 | 6 | 24 |
-| 21 | Змейка | 7 × 7 | 15 | 12 | 13 | 33 |
-| 22 | Четыре комнаты | 7 × 7 | 20 | 9 | 12 | 31 |
-| 23 | Двойное кольцо | 7 × 7 | 15 | 12 | 7 | 24 |
-| 24 | Серпантин | 7 × 7 | 18 | 9 | 11 | 29 |
-| 25 | Крылья | 7 × 7 | 20 | 9 | 23 | 52 |
-| 26 | Колодец | 7 × 7 | 18 | 7 | 8 | 27 |
-| 27 | Соты | 7 × 7 | 20 | 8 | 9 | 26 |
-| 28 | Крестовые проходы | 8 × 8 | 20 | 20 | 12 | 31 |
-| 29 | Рояль | 8 × 8 | 18 | 12 | 9 | 26 |
-| 30 | Галактика | 8 × 8 | 24 | 12 | 12 | 31 |
-| 31 | Сломанный мост | 8 × 8 | 24 | 8 | 11 | 29 |
-| 32 | Бабочка | 8 × 8 | 24 | 24 | 9 | 26 |
-| 33 | Желейный мегаполис | 8 × 8 | 24 | 16 | 8 | 24 |
-| 34 | Желейка внутри | 4 × 4 | 6 | 0 | 2 | 18 |
-| 35 | Две начинки | 5 × 5 | 8 | 0 | 3 | 18 |
-| 36 | Разные сердцевины | 6 × 6 | 9 | 0 | 3 | 18 |
-| 37 | Две оболочки | 6 × 6 | 9 | 1 | 4 | 18 |
-| 38 | Матрешка | 6 × 6 | 9 | 1 | 4 | 18 |
-| 39 | Начинка с обходом | 7 × 7 | 13 | 3 | 5 | 20 |
+
+
+| 1 | Третий цвет | 4 × 4 | 9 | 0 | 5 | 12 |
+| 2 | Объезд | 4 × 4 | 6 | 2 | 3 | 10 |
+| 3 | Две цепочки | 5 × 5 | 8 | 1 | 4 | 12 |
+| 4 | Остров | 5 × 5 | 9 | 3 | 4 | 12 |
+| 5 | Поворот | 5 × 5 | 9 | 4 | 5 | 14 |
+| 6 | Ключи | 6 × 6 | 12 | 4 | 5 | 16 |
+| 7 | Коридоры | 6 × 6 | 12 | 4 | 7 | 20 |
+| 8 | Четыре угла | 6 × 6 | 12 | 4 | 6 | 20 |
+| 9 | В обход | 7 × 7 | 16 | 5 | 7 | 22 |
+| 10 | Архипелаг | 7 × 7 | 16 | 7 | 12 | 30 |
+| 11 | Большие организмы | 7 × 7 | 20 | 7 | 14 | 34 |
+| 12 | Бублик | 5 × 5 | 10 | 1 | 4 | 24 |
+| 13 | Шахматные острова | 6 × 6 | 15 | 4 | 10 | 27 |
+| 14 | Две двери | 6 × 6 | 15 | 3 | 6 | 24 |
+| 15 | Подкова | 6 × 6 | 15 | 8 | 12 | 31 |
+| 16 | Песочные часы | 7 × 7 | 12 | 18 | 5 | 24 |
+| 17 | Лестница | 6 × 6 | 15 | 4 | 9 | 26 |
+| 18 | Длинные руки | 7 × 7 | 18 | 5 | 6 | 24 |
+| 19 | Змейка | 7 × 7 | 15 | 12 | 13 | 33 |
+| 20 | Четыре комнаты | 7 × 7 | 20 | 9 | 12 | 31 |
+| 21 | Двойное кольцо | 7 × 7 | 15 | 12 | 7 | 24 |
+| 22 | Серпантин | 7 × 7 | 18 | 9 | 11 | 29 |
+| 23 | Крылья | 7 × 7 | 20 | 9 | 23 | 52 |
+| 24 | Колодец | 7 × 7 | 18 | 7 | 8 | 27 |
+| 25 | Соты | 7 × 7 | 20 | 8 | 9 | 26 |
+| 26 | Крестовые проходы | 8 × 8 | 20 | 20 | 12 | 31 |
+| 27 | Рояль | 8 × 8 | 18 | 12 | 9 | 26 |
+| 28 | Галактика | 8 × 8 | 24 | 12 | 12 | 31 |
+| 29 | Сломанный мост | 8 × 8 | 24 | 8 | 11 | 29 |
+| 30 | Бабочка | 8 × 8 | 24 | 24 | 9 | 26 |
+| 31 | Желейный мегаполис | 8 × 8 | 24 | 16 | 8 | 24 |
+| 32 | Желейка внутри | 4 × 4 | 6 | 0 | 2 | 18 |
+| 33 | Две начинки | 5 × 5 | 8 | 0 | 3 | 18 |
+| 34 | Разные сердцевины | 6 × 6 | 9 | 0 | 3 | 18 |
+| 35 | Две оболочки | 6 × 6 | 9 | 1 | 4 | 18 |
+| 36 | Матрешка | 6 × 6 | 9 | 1 | 4 | 18 |
+| 37 | Начинка с обходом | 7 × 7 | 13 | 3 | 5 | 20 |
 
 Solutions and budgets count gestures, not transported cells. The new levels start with connected pairs, larger chains, or several disconnected organisms of a color, positioned around islands and corridors of white walls.
 
 `solver.js` is an offline search tool using the actual rigid-organism and wall rules, with color removal. Pass the level's `walls` to `solve(cells, size, { walls })`. It searches every nonzero integer conveyor displacement as one gesture. Pass `allFloor: true` to search simultaneous movement instead of individual lanes. Solutions for both modes are saved in `levels.js` as `solution` and `allFloorSolution`; the first two are shortest by exhaustive breadth-first search, and later ones are verified solutions from beam search without an optimality claim. Budgets deliberately allow generous spare moves.
 
-Run `node --test game.test.js` from the repository directory. The 41 tests replay every solution through the actual pointer handlers in both movement modes, including all 39 levels, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. All-floor solutions take 1–16 gestures and fit the existing generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
+Run `node --test game.test.js` from the repository directory. The 43 tests replay every solution through the actual pointer handlers in both movement modes, including all 37 levels, progression, victory, retry, budget behavior, preview reversal, menus, wall collisions, simultaneous collision propagation, setting persistence, animation pause/resume, and startup without Canvas roundRect or ResizeObserver. All-floor solutions take 1–16 gestures and fit the existing generous budgets. The original five and all ten new levels were also completed in the Codex browser through native drags.
 
 The all-floor mode was also checked in the Codex browser: a horizontal swipe on an empty row moves cargo in several other rows and spends one move, disabling the setting restores individual-lane movement, and an upward swipe moves multiple columns while a rigid chain stops at a stationary white wall.
 
@@ -72,7 +72,7 @@ INFINITE MOVES removes the move limit and switches the header from MOVES LEFT to
 
 The first 35 levels have difficulty dips; [the audit](difficulty-report.md) and [comparison chart](difficulty-chart.svg) document them. The published campaign retains that order.
 
-Levels 34–39 contain jelly inside other jelly on 4×4 through 7×7 boards, including multiple fillings, separate shell colors, nested layers and stationary obstacles. Each `inside` object has a unique identity and shares its shell’s cell; it has no independent coordinates or bridges until released. It moves with the shell. After the shell’s color completes and its disappearance animation ends, its immediate child remains at the same position and becomes a full-size playable jelly. Deeper fillings stay inside their new shell. Hidden jelly counts toward its color, preventing visible partners from clearing early. A release that completes an adjacent color starts another disappearance pulse without spending a move. Loss and victory wait until these cascades finish.
+Levels 32–37 contain jelly inside other jelly on 4×4 through 7×7 boards, including multiple fillings, separate shell colors, nested layers and stationary obstacles. Each `inside` object has a unique identity and shares its shell’s cell; it has no independent coordinates or bridges until released. It moves with the shell. After the shell’s color completes and its disappearance animation ends, its immediate child remains at the same position and becomes a full-size playable jelly. Deeper fillings stay inside their new shell. Hidden jelly counts toward its color, preventing visible partners from clearing early. A release that completes an adjacent color starts another disappearance pulse without spending a move. Loss and victory wait until these cascades finish.
 
 `node author-nested.js /tmp/jelly-nested-levels.json` reproduces the six handcrafted layouts and verified solutions in both modes. Budgets are 18–20 gestures, with at least ten spare moves over the longer saved solution. Regression checks cover movement with the shell, hidden-color completion, layer-by-layer release, solver identity, disappearance timing and a cascade on the final allowed move.
 
@@ -81,3 +81,5 @@ Level 36 was also completed in the Codex browser with native swipes: the miniatu
 Shared instructions live in the repository-root [AGENTS.md](AGENTS.md), including the user command rules and the `previews/` folder convention. They travel with a checkout of this repository and apply to local and cloud work. Start cloud work from the current repository revision; refresh an existing checkout and re-read the file when instructions change. Personal files under a computer's `~/.codex` are not required for these project rules. Command toggle states belong to each chat and are not saved as active states in the repository.
 
 Original levels 4 (Большое поле) and 5 (Четыре цвета) are temporarily removed; subsequent levels are renumbered. Saved completion marks are migrated to the new numbering.
+
+The first two tutorial levels are also temporarily removed. The campaign now starts with Третий цвет and contains 37 levels.
